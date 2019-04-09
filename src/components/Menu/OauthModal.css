@@ -212,3 +212,16 @@ ul.user-profile-info li i{
     margin-right: .5em;
 }
 
+.modal-signin button[type ="submit"]:focus {
+    outline: none;
+}
+
+span.err-email {
+    color: red;
+    font-size: .8rem;
+}
+
+i.fas.fa-exclamation-circle.error-warn {
+    margin-right: .5rem;
+}
+

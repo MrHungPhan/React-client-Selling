@@ -8,7 +8,7 @@ import * as actions from '../actions/ActionTypes';
 import change_alias from '../utils/convertLink'
 import Menu from '../components/Menu/Menu';
 import MenuItem from '../components/Menu/MenuItem';
-import OauthModal from '../components/Menu/OauthModal';
+import OauthModal from '../components/Menu/Oauth';
 
 var cookie = new Cookies();
 
@@ -17,7 +17,6 @@ class MenuContainer extends Component {
     componentWillMount(){
         // const token = localStorage.getItem('token');
         const token = cookie.get('token');
-        console.log(token);
         if(token && this.props.isAuthencated){
             this.props.getUserProfile()
         }
@@ -33,9 +32,8 @@ class MenuContainer extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        // const token = localStorage.getItem("token");
+
         const token = cookie.get('token');
-        console.log(token);
         if(token){
             if(lodash.isEqual(nextProps.userProfile, {})){
                 this.props.getUserProfile();
@@ -58,8 +56,6 @@ class MenuContainer extends Component {
 
     render() {
         var { menus, userProfile, errorMessage } = this.props;
-        console.log(menus);
-        console.log(userProfile);
         return (
             <Menu userProfile={userProfile}
              onSignIn = {this.onSignIn}

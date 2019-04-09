@@ -13,7 +13,7 @@ import classnames from 'classnames'
 import { Link } from 'react-router-dom'
 
 import MenuCart from './MenuCart';
-import OauthModal from './OauthModal';
+import Oauth from './Oauth';
 
 
 export default class Example extends React.Component {
@@ -73,7 +73,7 @@ export default class Example extends React.Component {
                             </Nav>
                         </Collapse>
     
-                        <OauthModal 
+                        <Oauth 
                             userProfile ={this.props.userProfile}
                              onSignIn = {this.props.onSignIn}
                              oauthGoogle = {this.props.oauthGoogle}

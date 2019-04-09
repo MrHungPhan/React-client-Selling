@@ -39,7 +39,7 @@ class HomePageContainer extends Component {
         
         var { productsHome, productDetailt } = this.props;
         var { modal } = this.state;
-        console.log(productDetailt);
+
         return (
             <HomePage> 
                 {/* Get Session Products from Reducers */}
