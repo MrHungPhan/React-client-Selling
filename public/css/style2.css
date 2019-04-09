@@ -1,0 +1,347 @@
+* {
+
+}
+
+.product-images-slider .slick-slide.slick-active {
+    text-align: center;
+}
+
+.product-images-slider {
+    margin-top: 1em;
+}
+
+button.slick-arrow.slick-next {
+    right: 0;
+}
+
+.slick-next:before, .slick-prev:before {
+    color: tomato !important;
+}
+
+button.slick-arrow.slick-prev {
+    left: 0;
+}
+
+.product-images-slider button.slick-arrow {
+    display: block !important;
+    /* background: red; */
+    position: absolute;
+    z-index: 99;
+}
+
+/* //////////////////////////////////////////////////////////////////////////// */
+
+
+#shirt {
+    padding-top:500px; 
+    background: url('.././images/t-sh.jpg') center center no-repeat fixed
+}
+
+#trousers {
+    padding-top:500px; 
+    background: url('.././images/tr.jpg') center center no-repeat fixed
+}
+
+#cloak {
+    padding-top:500px; 
+    background: url('.././images/winner.jpg') center center no-repeat fixed
+}
+
+#winner {
+    padding-top:500px; 
+    background: url('.././images/thu.jpg') center center no-repeat fixed
+}
+
+#shose {
+    padding-top:500px; 
+    background: url('.././images/shose.jpg') center center no-repeat fixed
+}
+
+[class*='col-']{
+    padding-left: 15px !important;
+    padding-right: 3px !important;
+}
+
+li.click-item {
+    /* padding: .5rem; */
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: .1rem;
+    margin-bottom: .3rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+li.click-item:hover >i {
+    color: blue;
+}
+
+li.click-item i {
+    font-size: 1.1rem;
+}
+
+
+span.icon-des {
+    line-height: 35px;
+    font-weight: 600;
+    color: white;
+    height: 100%;
+    /* padding: 1rem; */
+    top: 0;
+    background: #0a62ac;
+    width: 9em;
+    position: absolute;
+    z-index: 3;
+    left: -400px;
+    transition: all .5s;
+    padding-left: .6rem;
+}
+
+
+ul.quick-animate {
+    list-style: none;
+    padding-left:  .1rem;
+    z-index: 999;
+    left: .2rem;
+    display: block;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+}
+
+li.icon-quick img {
+    width: 25px;
+    height: 25px;
+}
+
+li.icon-quick {
+    z-index: 99;
+    position: relative;
+    margin-bottom: 0.3rem;
+    background: #eee;
+    /* height: 50px; */
+    /* width: 50px; */
+    padding: 5px;
+}
+
+li.icon-quick:hover span.icon-des {
+    left: 35px;
+}
+
+li.icon-quick:hover {
+    cursor: pointer;
+}
+
+/* ////////////////////////////////////// */
+
+.pro-info {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.pro-price {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: tomato;
+}
+
+.pro-name {
+    text-transform: uppercase;
+    font-size: .8rem;
+}
+
+a.link-pro-item:hover {
+    color: #333;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.link-pro-item {
+    color: #333;
+}
+
+.row.r-product {
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+.pro-item {
+    /* margin-top: 4em; */
+    margin-bottom: 2em;
+}
+
+.pro-item.hover-cart {
+    box-shadow: 0px 0 6px 0 #d1d4dc;
+}
+
+.pro-item.hover-cart .pro-image img {
+    transform: scale(1.1, 1.1);
+}
+
+.pro-image img {
+    transform: scale(1, 1);
+    transition: all .2s;
+    height: 100%;
+    width: 100%;
+}
+
+.pro-image {
+    overflow: hidden;
+    height: 275px;
+    position: relative;
+}
+
+.b-style{
+    background: #fff;
+}
+
+
+.pro-item{
+    overflow: hidden;
+    /* padding: .2rem; */
+}
+
+.pro-item:hover {
+    box-shadow: 0px 0 6px 0 #d1d4dc
+}
+
+ul.pro-click {
+    opacity: 0;
+    transition: all .2s;
+    top: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 18px;
+}
+
+ul.pro-click:hover {
+    cursor: pointer;
+}
+
+
+ul.pro-click.active {
+    opacity: 1;
+}
+
+.pro-item:hover .pro-image img {
+    transform:  scale(1.1, 1.1);
+}
+
+.modal-content {
+    border-radius: .2rem
+}
+
+.modal .product-d-actions {
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+.modal .add-to-cart {
+    margin-top: 1.5em;
+    margin-bottom: .8em;
+}
+
+.modal .p-actions .btn-buy-now span {
+    font-size: .9em;
+}
+
+.modal .p-actions .btn-add-cart div {
+    font-size: .9em;
+}
+
+.modal input[name ="quantity"] {
+    width: 75px;
+    height: 35px;
+}
+
+.modal .frm-quantity button.q-btn {
+    width: 45px;
+    height: 35px;
+}
+
+.modal .p-actions label {
+    margin-right: .7rem;
+    width: 35px;
+    height: 35px;
+}
+
+.modal .p-actions label.item-size {
+    width: 30px;
+    height: 20px;
+}
+
+.modal-content span.frm-title {
+    font-size: .9em;
+}
+
+.modal-content .p-price h3 {
+    padding-bottom: 7px;
+    font-size: 1.3em;
+}
+
+.modal-content .p-name h2 {
+    padding-bottom: 7px;
+    font-size: 1.5em;
+}
+
+h5.modal-title {
+    font-size: 1.3em;
+}
+
+
+.modal button.btn.btn-secondary {
+    border-radius: 0px;
+    padding: 5px 10px;
+    font-size: .8rem;
+}
+
+.modal-footer {
+    padding: .5em !important;
+}
+
+a.btn-buy-now {}
+
+.modal .p-actions .btn-buy-now {
+    padding: 1em 2em;
+}
+
+.modal .p-actions .btn-add-cart {
+    padding: 1em 2em;
+}
+
+.modal .message-size {
+    color: #bbb;
+    font-size: .9em;
+    margin-bottom: .3em;
+}
+
+.modal-open .navbar {
+    padding-right: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+/* /////////////////////////////////////////////// */
+
+@media (min-width : 576px) {
+    .modal-product-detailt.modal-dialog {
+        max-width: 650px !important;
+    }
+}

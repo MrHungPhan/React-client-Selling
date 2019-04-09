@@ -1,0 +1,35 @@
+.silder-relative {
+    margin-bottom: 1em;
+}
+
+li.filter-item {
+    margin-left: 1em;
+}
+
+li.filter-item select {
+    border-color: #d3d3d3;
+    /* margin-left: 1em; */
+    background: transparent;
+    border-radius: 0px;
+    padding: .3rem .5rem;
+    font-size: 15px;
+}
+
+li.filter-item select:focus {
+    outline: none;
+}
+
+.filter {
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+}
+
+
+ul.filter-content {
+    margin-bottom: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}

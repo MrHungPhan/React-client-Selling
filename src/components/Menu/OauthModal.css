@@ -1,0 +1,214 @@
+.modal-oauth .modal-body, .modal-signin .modal-body {
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-oauth .modal-header, .modal-signin .modal-header{
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    border: none;
+    padding-bottom: .3em;
+}
+
+.modal-oauth .modal-footer, .modal-signin .modal-footer{
+    padding-left: 1.5em !important;
+    padding-right: 1.5em !important;
+    padding-top: 0 !important;
+    padding-bottom: 1em !important;
+    border: none;
+    display: flex;
+}
+
+.modal-signin .modal-title, .modal-oauth .modal-title{
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 600
+}
+
+
+.modal-oauth .modal-footer .toggle-signin{
+    flex-grow: 2
+}
+
+
+.modal-oauth button.oauth-button {
+    display: flex;
+    align-items: center;
+    padding: .6rem 1.2rem;
+    box-shadow: 0 0.2rem 0 0 rgba(0,0,0,.2);
+    border-color: transparent;
+    text-transform: capitalize;
+    color : #fff;
+    font-weight : 600;
+    font-size: .8rem;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.modal-oauth button.oauth-button i{
+    width: 2em;
+    padding-right: 1em;
+    border-right: 1px solid #fff;
+}
+
+.modal-oauth button.oauth-button span {
+    flex-grow: 2;
+}
+
+button.oauth-button.face-oauth {
+    background: #4d75b9;
+    margin-bottom: 1em;
+}
+
+button.oauth-button.face-oauth:hover {
+    background: #3c5e97
+}
+
+button.oauth-button.google-oauth {
+    background: #e5101d;
+}
+
+button.oauth-button.google-oauth:hover{
+    background: #bc000b;
+}
+
+.style-title-footer i {
+    text-transform: inherit;
+    font-size: .9rem;
+    color: #828282
+}
+
+.style-title-footer i:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.style-title-footer.forget-pass {
+    flex-grow: 2;
+}
+
+
+
+.modal-signin input {
+    padding: .4rem .5rem;
+    /* padding-top: .4rem; */
+    width: 100%;
+    /* padding-bottom: .4rem; */
+    border: 1px solid #c7c7cd;
+    border-radius: 3px;
+    margin-bottom: .7em;
+}
+
+.modal-signin input[type ="password"] {
+    margin-bottom: 1.3em
+}
+.modal-signin button[type ="submit"] {
+    height: 2.4rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    color: #fff;
+    border-radius: 100px;
+    width: 100%;
+    background: #f5a623;
+    border: none;
+    padding: .4rem .5rem;
+}
+
+.modal-signin button[type ="submit"]:hover{
+    background: #f7941d
+}
+
+.modal-signin label.label-sign {
+    font-size: .7em;
+    text-transform: uppercase;
+}
+
+.modal-signin .toggle-fb-gg {
+    color: #828282;
+    text-align: center;
+    font-size: .9rem;
+    margin-bottom: 1rem;
+}
+
+.modal-signin .toggle-fb-gg:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.modal-signin .toggle-fb-gg i span:first-child {
+    color: #4990e2;
+}
+
+.modal-signin .toggle-fb-gg i span:last-child{
+    color: #e5101d
+}
+
+.user-logout{
+    position: relative;
+    color: #fff;
+}
+
+.user-logout:hover {
+    cursor: pointer;
+}
+
+
+.user-logout:hover ul.user-profile-info{
+    display: block
+}
+
+ul.user-profile-info{
+    display: none;
+    position: absolute;
+    list-style: none;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    width: 150px;
+    left: -50%;
+    /* top: 36px; */
+    top: 0px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+ul.user-profile-info li{
+    transition: all .5s;
+    padding: .5rem 1rem;
+}
+
+/* ul.user-profile-info::before{
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: .5rem solid transparent;
+    border-right: .5rem solid transparent;
+    border-bottom: .6rem solid #fff;
+    position: absolute;
+    top : -.6rem;
+    right: 50%;
+} */
+
+ul.user-profile-info li:hover{
+    background: #f1f1f1
+}
+
+ul.user-profile-info li a, ul.user-profile-info li span {
+    font-size: .9em;
+    transition: all .5s;
+    text-decoration: none;
+    color: #111;
+}
+
+ul.user-profile-info li:hover > a, ul.user-profile-info li:hover > span{
+    text-decoration: none;
+    color: #e5101d;
+}
+
+
+ul.user-profile-info li i{
+    color: #c7c7cd;
+    margin-right: .5em;
+}
+

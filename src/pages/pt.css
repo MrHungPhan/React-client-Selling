@@ -1,0 +1,227 @@
+.product-view{
+    margin-top:3em;
+}
+
+.product-d-actions {
+    margin-left: 2em;
+}
+
+.p-img img {
+    width: 100%;
+}   
+
+.p-name {
+    border-bottom: 1px solid #ddd;
+}
+
+.p-price h3 {
+    color: tomato;
+    margin-top: 1rem;
+    font-size: 2em;
+    font-weight: 600;
+    padding-bottom: 12px;
+}
+
+.p-price {
+    border-bottom: 1px solid #ddd;
+}
+
+.p-name h2 {
+    font-size: 2.2em;
+    text-align: left;
+    line-height: normal;
+    padding-bottom: 12px;
+    letter-spacing: normal;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    text-transform: none;
+}
+
+.p-actions{
+    margin-top: 1rem;
+}
+
+.p-actions .form-group {
+    align-items: center;
+    display: flex;
+}
+
+.p-actions span.frm-title {
+    margin-right: 2rem;
+}
+
+.p-actions .frm-check {
+    align-items: center;
+    flex-grow: 2;
+    display : flex;
+}
+
+.p-actions input[type="radio"] {
+    display: none
+}
+
+input[name="color"]:checked + img {
+    border : 2px solid #f18020;
+    transform: scale(1.1,1.1)
+}
+
+.p-actions label {
+    width: 40px;
+    height: 40px;
+    margin-right: 1em;
+}
+
+.p-actions label:hover {
+    cursor: pointer;
+}
+
+.p-actions label img {
+    transform: scale(1,1);
+    transition: all .2s;
+    border : 2px solid #ddd;
+    padding: .5px;
+    width: 100%;
+}
+
+.p-actions .item-style {
+    transform: scale(1,1);
+    font-size: .7rem;
+    width: 100%;
+    height: 100%;
+    border : 2px solid #ddd;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.p-actions label.item-size {
+    width: 35px;
+    height: 25px;
+    margin-right: 1em;
+}
+
+/* /////////////////////////////// */
+input[name="size"]:checked + .item-style {
+    border : 2px solid #f18020;
+    transform: scale(1.1,1.1)
+}
+
+.frm-quantity button.q-btn {
+    transition: color 300ms ease-in-out 0s, background-color 300ms ease-in-out 0s, background-position 300ms ease-in-out 0s;
+    width: 50px;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 0px;
+    background-color: #fff;
+}
+
+.frm-quantity button.q-btn:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: #fff;
+}
+
+.frm-quantity button.q-btn i {
+    color: #6dbe14;
+}
+
+input[name ="quantity"] {
+    border: 1px solid #ddd;
+    transform: translateY(-1px);
+    height: 40px;
+    width: 80px;
+    margin-left: -1px;
+    margin-right: -1px;
+    text-align: center;
+    border-radius: 0px;
+}
+
+input[name ="quantity"]:focus {
+    outline: none;
+}
+
+.p-actions .btn-add-cart{
+    text-align: center;
+    margin-right: .5rem;
+    background: #f18020;
+    color: #fff;
+    text-shadow: none;
+    padding: 5px 30px 5px;
+    margin-top: 0px;
+    font-size: .8rem;
+    transition: color 300ms ease-in-out 0s, background-color 300ms ease-in-out 0s, background-position 300ms ease-in-out 0s;
+    border: none;
+    border-radius: 0px;
+
+}
+
+.p-actions .btn-add-cart div {
+    font-size: 1.2em;
+    font-weight: 600;
+    text-transform: uppercase
+
+}
+.p-actions .btn-add-cart div>i {
+    margin-right: .5rem
+}
+
+.add-to-cart {
+    margin-top: 2em;
+    display: flex;
+}
+.p-actions .btn-buy-now{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-size: .8em;
+    padding: 8px 40px 8px;
+    background-color: tomato;
+     text-decoration: none;
+}
+
+.p-actions .btn-buy-now span{
+   
+    color: #fff;
+    font-size: 1.2em;
+    font-weight : 600;
+    text-transform: uppercase
+}
+
+/* //////////////////////////////////// */
+.product-text{
+    margin-top: 2em;
+}
+.nav-tabs{
+    border-bottom: 2px dotted #111;
+}
+
+.nav-tabs li.nav-item:hover {
+    border: none;
+    cursor: pointer;
+}
+
+.nav-tabs li.nav-item:first-child{
+    padding-left: 0;
+}
+
+.nav-tabs li.nav-item{
+    padding: .5em 1em;
+}
+
+.nav-tabs .item-tab.active{
+    color: #2ecc71
+}
+
+.nav-tabs .item-tab{
+    font-size: 1.1em;
+    font-weight: 600;
+    
+}
+
+.p-actions .message-size{
+    color: #bbb;
+    font-size: .9em;
+    margin-bottom: .3em;
+}

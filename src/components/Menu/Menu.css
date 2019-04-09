@@ -1,0 +1,108 @@
+.ml-auto, .mx-auto {
+    margin-left: 0 !important;
+}
+
+.container {
+    padding: 0;
+}
+
+.navbar {
+    padding: .4rem 0;
+   
+}
+
+
+ul.sub-menu {
+    z-index: 999;
+    transition:  all .5s;
+    display: none;
+    width: 180px;
+    padding: 0;
+    position: absolute;
+    list-style: none;
+    background: #111;
+}
+
+li.sub-menu-item{
+    position: relative;
+}
+
+li.sub-menu-item a {
+    transition: all .5s;
+    color: white;
+    display: block;
+    padding: .6rem;
+    font-size: .8rem;
+    text-decoration: none;
+}
+
+li.sub-menu-item a:hover {
+    color: red;
+    padding-left: 1.2rem;
+}
+
+.bg-light {
+    background: #222 !important
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
+    color: white
+}
+
+.nav-link.active {
+    background: tomato;
+}
+
+.navbar{
+    padding: 0
+}
+
+.navbar-expand-md .navbar-nav .nav-link{
+    padding: 1rem 1.1rem;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+ul.sub-menu.is-over{
+    display: block;
+}
+
+ul.sub-menu.is-over > li{
+    background: #111 !important
+} 
+
+li.nav-item:hover a.nav-link{
+    background: #111;
+    color: white
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: white
+}
+
+.cart-menu i {
+    color: white;
+    font-size: 1rem;
+}
+
+a.cart-menu {
+    padding: 0 1rem;
+}
+
+div.oauth-menu {
+    color: #fff;
+    font-size: .9em;
+    margin-right: 2em;
+    text-decoration: none;
+    font-weight: 600
+}
+
+div.oauth-menu:hover {
+    color: red;
+    cursor: pointer;
+}
