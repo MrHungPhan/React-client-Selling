@@ -8,7 +8,7 @@ import HomePage from '../pages/HomePage';
 import SessionProducts from '../components/Home/SessionProducts';
 import ProductItem from '../components/Home/ProductItem';
 import QuickViewProduct from '../components/QuickViewProduct';
-
+import QuickViewProduct2 from '../components/QuickViewProduct2';
 
 class HomePageContainer extends Component {
     constructor(props) {
@@ -44,7 +44,7 @@ class HomePageContainer extends Component {
             <HomePage> 
                 {/* Get Session Products from Reducers */}
                 {this.showSessionProducts(productsHome)}
-                <QuickViewProduct 
+                <QuickViewProduct2 
                 product = {productDetailt}
                 modal = {modal}
                 toggle = {this.toggle}

@@ -32,7 +32,7 @@ class MenuContainer extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-
+        console.log(JSON.parse(localStorage.getItem('cart')))
         const token = cookie.get('token');
         if(token){
             if(lodash.isEqual(nextProps.userProfile, {})){

@@ -27,7 +27,6 @@ class ProductDetailtContainer extends Component {
         if(lodash.isEqual(nextProps, this.props) && lodash.isEqual(nextState, this.state)){
             return false
         }
-
         return true
     }
 

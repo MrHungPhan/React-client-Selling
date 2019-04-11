@@ -91,6 +91,7 @@ li.nav-item:hover a.nav-link{
 }
 
 a.cart-menu {
+    position: relative;
     padding: 0 1rem;
 }
 
@@ -106,3 +107,17 @@ div.oauth-menu:hover {
     color: red;
     cursor: pointer;
 }
+
+span.cart-length {
+        font-weight: 600;
+        color: white;
+        position: absolute;
+        width: 1.2em;
+        height: 1.2em;
+        border-radius: 50%;
+        background: tomato;
+        text-align: center;
+        line-height: 1.2em;
+        top: -5px;
+        right: 0px;
+    }
