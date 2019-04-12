@@ -69,8 +69,8 @@ class ProductItem extends Component {
                             >
                                 <i className="far fa-eye"></i>
                             </li>
-                            <li className="click-item q-to-cart">
-                                <i className="fas fa-cart-plus"></i>
+                            <li className="click-item q-favi">
+                                <i class="fas fa-heart"></i>
                             </li>
                         </ul>
                  

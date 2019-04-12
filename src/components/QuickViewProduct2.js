@@ -26,7 +26,7 @@ class QuickViewProduct2 extends Component {
 
         this.state = {
             modal: false,
-            sizes: []
+            sizes: null
         }
     }
 
@@ -36,18 +36,25 @@ class QuickViewProduct2 extends Component {
     }
 
     componentWillReceiveProps(nextprops) {
-        this.setState({
-            ...this.state,
-            modal: nextprops.modal
-        })
+        if(!nextprops.modal)
+            this.setState({
+                ...this.state,
+                modal: nextprops.modal,
+                sizes : null
+            })
+        else{
+            this.setState({
+                ...this.state,
+                modal: nextprops.modal,
+            })
+        }
+        console.log(this.state);
     }
 
     toggle = () => {
-        this.setState({
-            ...this.state,
-            sizes: []
-        })
+        //reset form before toggle modal
         this.props.reset();
+
         this.props.toggle();
     }
 
@@ -162,7 +169,7 @@ class QuickViewProduct2 extends Component {
     render() {
         var { product, handleSubmit } = this.props;
         var { modal, sizes, quantity } = this.state;
-
+        console.log(product)
         return (
             <div>
                 <div>
@@ -207,38 +214,44 @@ class QuickViewProduct2 extends Component {
                                                                     />
 
                                                                 </div>
-
-
                                                             }) : ''
                                                         }
 
                                                     </div>
                                                 </FormGroup>
-                                                <div className="message-size"><i>Chon mau sac de hien thi kich thuoc hien co</i></div>
-                                                <FormGroup>
-                                                    <span className="frm-title">Kich thuoc : </span>
-                                                    <div className="frm-check">
-                                                        {
-                                                            sizes.length > 0 ? sizes.map(size => {
-                                                                return <Label className="item-size"
-                                                                    key={size.id}
-                                                                >
-                                                                    <Field
-                                                                        name="size"
-                                                                        component="input"
-                                                                        type="radio"
-                                                                        value={size.id.toString()}
+                                                {
+                                                    (product.length !== 0 && product[2].length !== 0) && 
+                                                                <div>
+                                                                <div className="message-size"><i>Chon mau sac de hien thi kich thuoc hien co</i></div>
+                                                                    <FormGroup>
+                                                                        <span className="frm-title">Kich thuoc : </span>
+                                                                        <div className="frm-check">
+                                                                            {
+                                                                                sizes ? sizes.map(size => {
+                                                                                    return <Label className="item-size"
+                                                                                        key={size.id}
+                                                                                    >
+                                                                                        <Field
+                                                                                            name="size"
+                                                                                            component="input"
+                                                                                            type="radio"
+                                                                                            value={size.id.toString()}
 
-                                                                    />
-                                                                    <div className="item-style">
-                                                                        {size.name}
+                                                                                        />
+                                                                                        <div className="item-style">
+                                                                                            {size.name}
+                                                                                        </div>
+                                                                                    </Label>
+                                                                                }) : ''
+                                                                            }
+
+                                                                        </div>
+                                                                    </FormGroup>
                                                                     </div>
-                                                                </Label>
-                                                            }) : ''
-                                                        }
-
-                                                    </div>
-                                                </FormGroup>
+                                                }
+                                                {
+                                                    (product.length !== 0 && product[2].length === 0)  && ''  // Neu san pham ko co size thi ko hien vd: Phu Kien
+                                                }
 
                                                 <FormGroup>
                                                     <span className="frm-title">So luong : </span>
@@ -266,7 +279,7 @@ class QuickViewProduct2 extends Component {
                                                 <div className="add-to-cart">
                                                     <button className="btn-add-cart" type="submit"><div><i className="fas fa-cart-plus"></i>Them vao gio</div>
                                                     </button>
-                                                    <Link to='/' className="btn-buy-now">
+                                                    <Link to='/cart' className="btn-buy-now">
                                                         <span>Mua ngay</span>
 
                                                     </Link>

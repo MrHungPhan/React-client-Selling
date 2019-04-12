@@ -6,7 +6,7 @@ import lodash from 'lodash';
 import * as actions from '../actions/ActionTypes';
 import CatalogPage from '../pages/CatalogPage';
 import ProductItem from '../components/CatalogPage/ProductItem';
-import QuickViewProduct from '../components/QuickViewProduct';
+import QuickViewProduct2 from '../components/QuickViewProduct2';
 
 class CatalogPageContainer extends Component {
     constructor(props) {
@@ -29,6 +29,7 @@ class CatalogPageContainer extends Component {
     }
 
     componentDidMount(){
+        document.body.classList.remove('selling-cart');
         var { match } = this.props;
         if(lodash.size(match.params) === 2){
             this.props.fetchProductsCatalogChild(match)
@@ -63,7 +64,7 @@ class CatalogPageContainer extends Component {
         return (
             <CatalogPage>
                { this.showProducts(products) }
-               <QuickViewProduct 
+               <QuickViewProduct2 
                 product = {productDetailt}
                 modal = {modal}
                 toggle = {this.toggle}

@@ -13,6 +13,7 @@ class ProductDetailtContainer extends Component {
         return id;
     }
     componentWillMount(){
+        document.body.classList.remove('selling-cart');
         var { match } = this.props;
         var id = null;
         if(match.params.product){

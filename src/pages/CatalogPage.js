@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { relative } from 'path';
 import { Container, Row } from 'reactstrap'
 
 import SliderCatalog from '../components/CatalogPage/SliderCatalog';
@@ -11,7 +10,6 @@ class CatalogPage extends Component {
         return (
             <div>
                 <SliderCatalog />
-
                 <Filter />
 
                 <Container >

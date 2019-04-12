@@ -5,6 +5,7 @@ import HomePageContainer from './conatiners/HomePageContainer';
 import CatalogPageContainer from './conatiners/CatalogPageContainer';
 import ProductDetailtContainer from './conatiners/ProductDetailtContainer';
 import OauthContainer from './conatiners/OauthContainer';
+import CartPageContainer from './conatiners/CartPageContainer'
 
 function isNameProduct(name){
     var nameArr = name.split('-');
@@ -24,6 +25,11 @@ const routes = [
         path : '/login',
         exact : true,
         main : ({ history }) => <OauthContainer history = {history} />
+    },
+    {
+        path : '/cart',
+        exact : true,
+        main : ({match}) => <CartPageContainer match = {match}/>
     },
     {
         path : '/:name',

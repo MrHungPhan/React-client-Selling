@@ -32,11 +32,11 @@ class HomePageContainer extends Component {
     }
 
     componentDidMount(){
+        document.body.classList.remove('selling-cart');
         this.props.fetchProductsHome();
     }
 
-    render() {
-        
+    render() {      
         var { productsHome, productDetailt } = this.props;
         var { modal } = this.state;
 
