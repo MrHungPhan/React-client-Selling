@@ -189,7 +189,7 @@ a.link-pro-item {
 }
 
 .pro-item.hover-cart .pro-image img {
-    transform: scale(1.1, 1.1);
+    transform: scale(1.07, 1.07);
 }
 
 .pro-image img {
@@ -240,7 +240,7 @@ ul.pro-click.active {
 }
 
 .pro-item:hover .pro-image img {
-    transform:  scale(1.1, 1.1);
+    transform: scale(1.07, 1.07);
 }
 
 .modal-content {

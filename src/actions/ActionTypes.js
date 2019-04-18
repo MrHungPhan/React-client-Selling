@@ -1,4 +1,5 @@
 import { Cookies } from 'react-cookie'
+import lodash from 'lodash'
 
 import * as type from '../const/index';
 import callApi from '../utils/apiCaller';
@@ -158,7 +159,6 @@ export const oauthGoogle = (accessToken) => {
 export const getUserProfile = () => {
     return async dispatch => {
         const res = await callApi('user/profile', "POST", null);
-        console.log(res)
         dispatch({
             type: type.OAUTH_GET_USER,
             user: res.data.user
@@ -174,4 +174,66 @@ export const logOutUser = () => {
             type : type.LOGOUT_USER,
         });
     }
+}
+
+//////////////////////////////////////////////////////////////////
+// cart
+// add to cart api
+export const addToCart = (product) => {
+    return async dispatch => {
+        const res = await callApi('cart/add', 'POST', product);
+        if(res.status === 200){
+            dispatch({
+                type : type.ADD_TO_CART,
+                cart : res.data.cart
+            })
+        }
+    }
+}
+//add cart localStrage
+var checkExitsProductOnCartLocal = (productNew, cart) => {
+    var check = -1;
+    for (let i = 0; i < cart.length; i++) {
+        if (lodash.isEqual(productNew.product, cart[i].product) && lodash.isEqual(productNew.color, cart[i].color) && lodash.isEqual(productNew.size, cart[i].size)) {
+            check = i;
+        }
+    }
+    return check;
+}
+
+export const addToCartLocal = (product) => {
+    return dispatch => {
+            var cartData = JSON.parse(localStorage.getItem('cart'));
+            var cart = cartData ? cartData : [];
+            if(cart){
+                const index = checkExitsProductOnCartLocal(product, cart);
+                if(index !== -1){
+                    cart[index].quantity = cart[index].quantity + product.quantity
+                }else{
+                    cart.push(product)
+                };
+            }else{
+                cart.push(product)
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            dispatch({
+                type : type.ADD_TO_CART_LOCAL,
+                cart
+            })
+        }
+}
+
+
+// get cart
+export const fetchGetCart = () => {
+    return async dispatch => {
+        const res = await callApi('cart/getCart', 'GET', null);
+        if(res.status === 200){
+            dispatch({
+                type : type.FECTCH_GET_CART,
+                cart : res.data.cart
+            })
+        }
+    }
+    
 }

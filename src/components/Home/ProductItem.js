@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Col } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import classnames from 'classnames';
@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import change_alias from '../../utils/convertLink';
 
 
-class ProductItem extends Component {
+class ProductItem extends PureComponent {
   constructor(props){
           super(props)
 
@@ -33,7 +33,7 @@ class ProductItem extends Component {
     }
 
     render() {
-        var { product, index } = this.props
+        var { product } = this.props
         var to = change_alias(product.name) + '-' + product.id
         return (
             <Col sm="3">

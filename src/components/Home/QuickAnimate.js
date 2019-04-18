@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {   scroller } from 'react-scroll'
 const quick = [
@@ -29,7 +29,7 @@ const quick = [
     }
 ]
 
-class QuickAnimate extends Component {
+class QuickAnimate extends PureComponent {
     render() {
         return (
             <ul className="quick-animate">      

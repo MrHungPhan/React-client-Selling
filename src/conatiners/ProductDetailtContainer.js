@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import lodash from 'lodash';
+import { Cookies } from 'react-cookie';
 
 import * as actions from '../actions/ActionTypes';
 import ProductDetailtPage from '../pages/ProductDetailtPage'
+
+const cookie = new Cookies()
 
 class ProductDetailtContainer extends Component {
     getIdFromUrl = (url) => {
@@ -31,11 +34,21 @@ class ProductDetailtContainer extends Component {
         return true
     }
 
+    addToCart = (product) => {
+        const token = cookie.get('token');
+        if(token){
+            this.props.addToCart(product);
+        }else{
+            this.props.addToCartLocal(product)
+        }
+    }
+
     render() {
         var { product } = this.props;
         return (
             <ProductDetailtPage
             product = {product}
+            addToCart={this.addToCart}
             />
 
         );
@@ -56,6 +69,14 @@ const mapDispatchToProps = (dispatch , props) => {
     return{
         fetchProductDetailt : (id) => {
             dispatch(actions.fetchProductDetailt(id))
+        },
+
+        addToCart : (product) => {
+            dispatch(actions.addToCart(product));
+        },
+
+        addToCartLocal : (product) => {
+            dispatch(actions.addToCartLocal(product));
         }
     }
 }

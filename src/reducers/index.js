@@ -7,6 +7,7 @@ import productDetailt from './productDetailt'
 import {reducer as formReducerOauth } from 'redux-form';
 import oauth from './oauth';
 import userProfile from './userProfile';
+import cart from './cart'
 
 var myReducers = combineReducers({
    productsHomePage,
@@ -15,7 +16,8 @@ var myReducers = combineReducers({
    productDetailt,
    form : formReducerOauth,
    oauth : oauth,
-   userProfile : userProfile
+   userProfile : userProfile,
+   cart
 })
 
 export default myReducers;

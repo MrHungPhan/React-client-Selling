@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import lodash from 'lodash';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -10,7 +10,7 @@ import OauthModal from './OauthModal';
 
 var cookie = new Cookies();
 
-class Oauth extends PureComponent {
+class Oauth extends Component {
     constructor(props) {
         super(props);
 

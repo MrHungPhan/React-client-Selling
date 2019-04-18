@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Row, Col, Form, FormGroup, Label } from 'reactstrap';
@@ -20,7 +20,7 @@ const renderField = ({ input, index, color, type, meta: { touched, error } }) =>
 }
 
 
-class QuickViewProduct2 extends Component {
+class QuickViewProduct2 extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -113,15 +113,15 @@ class QuickViewProduct2 extends Component {
         }
     }
 
-    checkExitsProductOnCartLocal = (productNew, cart) => {
-        var check = -1;
-        for (let i = 0; i < cart.length; i++) {
-            if (lodash.isEqual(productNew.product, cart[i].product) && lodash.isEqual(productNew.color, cart[i].color) && lodash.isEqual(productNew.size, cart[i].size)) {
-                check = i;
-            }
-        }
-        return check;
-    }
+    // checkExitsProductOnCartLocal = (productNew, cart) => {
+    //     var check = -1;
+    //     for (let i = 0; i < cart.length; i++) {
+    //         if (lodash.isEqual(productNew.product, cart[i].product) && lodash.isEqual(productNew.color, cart[i].color) && lodash.isEqual(productNew.size, cart[i].size)) {
+    //             check = i;
+    //         }
+    //     }
+    //     return check;
+    // }
 
     onSubmit = (values) => {
         if (!values.color) {
@@ -138,24 +138,28 @@ class QuickViewProduct2 extends Component {
 
         const token = cookie.get('token');
 
-        // if not authencation 
-        if (!token) {
-            var cart = JSON.parse(localStorage.getItem("cart"));
-            // if cart localStrorage exist
-            if (cart) {
-                const check = this.checkExitsProductOnCartLocal(product, cart);
-                if (check !== -1) {
-                    cart[check].quantity += product.quantity;
-                } else {
-                    cart.push(product);
-                }
+        console.log(product)
 
-            } else { // elset nto exits , create new
-                cart = [];
-                cart.push(product);
-            }
-            localStorage.setItem("cart", JSON.stringify(cart))
-        }
+        // if not authencation 
+        // if (!token) {
+        //     var cart = JSON.parse(localStorage.getItem("cart"));
+        //     // if cart localStrorage exist
+        //     if (cart) {
+        //         const check = this.checkExitsProductOnCartLocal(product, cart);
+        //         if (check !== -1) {
+        //             cart[check].quantity += product.quantity;
+        //         } else {
+        //             cart.push(product);
+        //         }
+
+        //     } else { // elset nto exits , create new
+        //         cart = [];
+        //         cart.push(product);
+        //     }
+        //     localStorage.setItem("cart", JSON.stringify(cart))
+        // }else{
+            this.props.addToCart(product)
+        // }
 
         // reset form data
         this.props.reset();
@@ -169,7 +173,6 @@ class QuickViewProduct2 extends Component {
     render() {
         var { product, handleSubmit } = this.props;
         var { modal, sizes, quantity } = this.state;
-        console.log(product)
         return (
             <div>
                 <div>

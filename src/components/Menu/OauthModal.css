@@ -145,6 +145,7 @@ button.oauth-button.google-oauth:hover{
 }
 
 .user-logout{
+    text-transform: capitalize;
     position: relative;
     color: #fff;
 }

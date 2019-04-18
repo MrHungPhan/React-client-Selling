@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import lodash from 'lodash';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, TabContent, Nav, NavItem, NavLink, TabPane } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
+import { Cookies } from 'react-cookie';
 
-class ProductDetailt extends Component {
+const cookie = new Cookies();
+
+class ProductDetailt extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -73,6 +76,83 @@ class ProductDetailt extends Component {
             }
         })
 
+    }
+
+    getProductAddCart = (values) => {
+        var colorPr, sizePr = null;
+        var { color, size, quantity } = values;
+        var { product } = this.props;
+        for (let item of product[1]) {
+            if (item.id === parseInt(color))
+                colorPr = { ...item };
+        }
+        if (product[2].length > 0) {
+            for (let item of product[2]) {
+                let id = parseInt(lodash.keys(item)[0]);
+                if (parseInt(color) === id) {
+                    let sizes = lodash.values(item)[0];
+                    for (let isize of sizes) {
+                        if (isize.id === parseInt(size)) sizePr = { ...isize }
+                    }
+                }
+            }
+        }
+        return {
+            product: product[0],
+            color: colorPr,
+            size: sizePr,
+            quantity: quantity
+        }
+    }
+
+    // checkExitsProductOnCartLocal = (productNew, cart) => {
+    //     var check = -1;
+    //     for (let i = 0; i < cart.length; i++) {
+    //         if (lodash.isEqual(productNew.product, cart[i].product) && lodash.isEqual(productNew.color, cart[i].color) && lodash.isEqual(productNew.size, cart[i].size)) {
+    //             check = i;
+    //         }
+    //     }
+    //     return check;
+    // }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        var product = this.getProductAddCart(this.state.form)
+
+        // const token = cookie.get('token');
+
+        // console.log(product)
+        // // if not authencation 
+        // if (!token) {
+        //     var cart = JSON.parse(localStorage.getItem("cart"));
+        //     // if cart localStrorage exist
+        //     if (cart) {
+        //         const check = this.checkExitsProductOnCartLocal(product, cart);
+        //         if (check !== -1) {
+        //             cart[check].quantity += product.quantity;
+        //         } else {
+        //             cart.push(product);
+        //         }
+
+        //     } else { // elset nto exits , create new
+        //         cart = [];
+        //         cart.push(product);
+        //     }
+        //     localStorage.setItem("cart", JSON.stringify(cart))
+        // }else{
+            this.props.addToCart(product)
+        // }
+
+        // reset form data
+        this.setState({
+            sizes : [],
+            form : {
+                ...this.state.form,
+                color : null,
+                size : null,
+                quantity: 1
+            }
+        })
     }
 
     render() {
@@ -167,7 +247,7 @@ class ProductDetailt extends Component {
                                 <h3>{product.length > 0 ? product[0].price : ''}$</h3>
                             </div>
                             <div className="p-actions">
-                                <Form>
+                                <Form onSubmit={this.onSubmit}>
 
                                     <FormGroup>
                                         <span className="frm-title">Mau sac : </span>

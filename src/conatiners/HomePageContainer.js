@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import lodash from 'lodash';
 import {connect} from 'react-redux';
 import * as actions from '../actions/ActionTypes';
+import { Cookies } from 'react-cookie';
 
 import HomePage from '../pages/HomePage';
 import SessionProducts from '../components/Home/SessionProducts';
 import ProductItem from '../components/Home/ProductItem';
 import QuickViewProduct from '../components/QuickViewProduct';
 import QuickViewProduct2 from '../components/QuickViewProduct2';
+
+const cookie = new Cookies()
 
 class HomePageContainer extends Component {
     constructor(props) {
@@ -36,6 +39,16 @@ class HomePageContainer extends Component {
         this.props.fetchProductsHome();
     }
 
+    addToCart = (product) =>{
+        const token = cookie.get('token');
+        if(token){
+            this.props.addToCart(product);
+        }else{
+            this.props.addToCartLocal(product)
+        }
+        
+    }
+
     render() {      
         var { productsHome, productDetailt } = this.props;
         var { modal } = this.state;
@@ -48,6 +61,7 @@ class HomePageContainer extends Component {
                 product = {productDetailt}
                 modal = {modal}
                 toggle = {this.toggle}
+                addToCart={this.addToCart}
                 />
             </HomePage>
         );
@@ -109,6 +123,13 @@ const mapDispatchToProps = (dispatch, props) => {
 
         fetchProductDetailt : (id) => {
             dispatch(actions.fetchProductDetailt(id));
+        },
+
+        addToCart : (product) => {
+            dispatch(actions.addToCart(product));
+        },
+        addToCartLocal : (product) => {
+            dispatch(actions.addToCartLocal(product))
         }
     }
 }

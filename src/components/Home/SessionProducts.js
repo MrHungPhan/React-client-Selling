@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import { Element} from 'react-scroll';
 
-export default class SessionProducts extends Component {
+export default class SessionProducts extends PureComponent {
 
     render() {
         var { id } = this.props;

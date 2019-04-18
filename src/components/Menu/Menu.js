@@ -16,7 +16,7 @@ import MenuCart from './MenuCart';
 import Oauth from './Oauth';
 
 
-export default class Example extends React.Component {
+export default class Example extends React.PureComponent {
     constructor(props) {
         super(props);
         this.toggleMenu = this.toggleMenu.bind(this);
@@ -61,6 +61,7 @@ export default class Example extends React.Component {
 
     render() {
         var { isFixedMenu } = this.state
+        var { cart } = this.props;
         return (
             <div>
                 <Navbar color="light" className={classnames({ 'fixed-top': isFixedMenu })} light expand="md">
@@ -80,7 +81,7 @@ export default class Example extends React.Component {
                              errorMessage={this.props.errorMessage}
                              logoutUser = {this.props.logoutUser}
                              />    
-                        <MenuCart />
+                        <MenuCart cart ={cart} />
                     </Container>
 
                 </Navbar>

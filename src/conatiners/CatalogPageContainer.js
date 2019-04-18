@@ -2,11 +2,14 @@ import React, {                                                                 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import lodash from 'lodash';
+import { Cookies } from 'react-cookie'
 
 import * as actions from '../actions/ActionTypes';
 import CatalogPage from '../pages/CatalogPage';
 import ProductItem from '../components/CatalogPage/ProductItem';
 import QuickViewProduct2 from '../components/QuickViewProduct2';
+
+const cookie = new Cookies();
 
 class CatalogPageContainer extends Component {
     constructor(props) {
@@ -58,6 +61,15 @@ class CatalogPageContainer extends Component {
         return true
     }
 
+    addToCart = (product) => {
+        const token = cookie.get('token');
+        if(token){
+            this.props.addToCart(product);
+        }else{
+            this.props.addToCartLocal(product)
+        }
+    }
+
     render() {
         var { products, productDetailt } = this.props
         var { modal } = this.state;
@@ -68,6 +80,7 @@ class CatalogPageContainer extends Component {
                 product = {productDetailt}
                 modal = {modal}
                 toggle = {this.toggle}
+                addToCart = {this.addToCart}
                 />
             </CatalogPage>
         );
@@ -114,6 +127,13 @@ const mapDistchToProps = (dispatch, props) => {
         },
         fetchProductDetailt : (id) => {
             dispatch(actions.fetchProductDetailt(id));
+        },
+
+        addToCart : (product) => {
+            dispatch(actions.addToCart(product))
+        },
+        addToCartLocal : (product) => {
+            dispatch(actions.addToCartLocal(product))
         }
     }
 }

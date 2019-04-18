@@ -8,7 +8,7 @@ import * as actions from '../actions/ActionTypes';
 import change_alias from '../utils/convertLink'
 import Menu from '../components/Menu/Menu';
 import MenuItem from '../components/Menu/MenuItem';
-import OauthModal from '../components/Menu/Oauth';
+import OauthModal from '../components/Menu/Oauth'
 
 var cookie = new Cookies();
 
@@ -18,7 +18,8 @@ class MenuContainer extends Component {
         // const token = localStorage.getItem('token');
         const token = cookie.get('token');
         if(token && this.props.isAuthencated){
-            this.props.getUserProfile()
+            this.props.getUserProfile();
+             this.props.fetchGetCart();
         }
         this.props.fetchMenu();
     }                                                                                                                                                                                                                                                                                                                                             
@@ -54,13 +55,14 @@ class MenuContainer extends Component {
     }
 
     render() {
-        var { menus, userProfile, errorMessage } = this.props;
+        var { menus, userProfile, errorMessage, cart } = this.props;
         return (
             <Menu userProfile={userProfile}
              onSignIn = {this.onSignIn}
              oauthGoogle = {this.oauthGoogle}
              errorMessage = {errorMessage}
              logoutUser = {this.logoutUser}
+             cart = {cart}
              >
                 { this.showMenu(menus) }
             </Menu>
@@ -97,7 +99,8 @@ const mapStateToProps = (state) => {
         menus : state.menus,
         isAuthencation : state.oauth.isAuthencated,
         errorMessage : state.oauth.error,
-        userProfile : state.userProfile
+        userProfile : state.userProfile,
+        cart : state.cart
     }
 }
 
@@ -122,6 +125,10 @@ const mapDispatchToProps = (dispatch, props) => {
 
         logoutUser : () => {
             dispatch(actions.logOutUser())
+        },
+
+        fetchGetCart : () => {
+            dispatch(actions.fetchGetCart())
         }
     }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classnames from 'classnames';
 import { Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
@@ -7,7 +7,7 @@ import './layout.css'
 
 import change_alias from '../../utils/convertLink'
 
-class ProductItem extends Component {
+class ProductItem extends PureComponent {
     constructor(props){
         super(props)
 

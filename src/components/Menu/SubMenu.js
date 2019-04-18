@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames'
 
 import { NavLink } from 'react-router-dom';
 import change_alias from '../../utils/convertLink'
 
-class SubMenu extends Component {
+class SubMenu extends PureComponent {
     
     render() {
         var { subMenu, isShowSubMenu, keyShow, indexParent, parentTo } = this.props;

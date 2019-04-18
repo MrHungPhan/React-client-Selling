@@ -12,3 +12,7 @@ export const OAUTH_GOOGLE = "OAUTH_GOOGLE"
 export const OAUTH_FACEBOOK = "OAUTH_FACEBOOK"
 export const LOGOUT_USER = "LOGOUT_USER"
 export const OAUTH_GET_USER = "OAUTH_GET_USER"
+
+export const ADD_TO_CART = "ADD_TO_CART";
+export const ADD_TO_CART_LOCAL = "ADD_TO_CART_LOCAL"
+export const FECTCH_GET_CART = "FECTCH_GET_CART";

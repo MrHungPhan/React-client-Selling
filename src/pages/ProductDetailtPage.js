@@ -24,12 +24,17 @@ class ProductDetailtPage extends Component {
             });
         }
     }
+
+    addToCart = (product) => {
+        this.props.addToCart(product)
+    }
+
     render() {
         var { product } = this.props
         return (
             <div>
                 <Container>
-                   <ProductDetailt product ={product}/>
+                   <ProductDetailt addToCart={this.addToCart} product ={product}/>
                     <div className="product-text">
                         <Row>
                            <Col xs ="12">
