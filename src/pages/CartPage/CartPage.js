@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import '../components/CartPage/CartPage.css';
-import CartItem from '../components/CartPage/CartItem'
 import { Row, Container, Col } from 'reactstrap';
 import { Cookies } from 'react-cookie';
+import { Link } from 'react-router-dom';
+import formatMoney from '../../utils/formatMoney';
+
+import './CartPage.css';
+import CartItem from '../../components/CartPage/CartItem'
+
 
 var cookie = new Cookies();
 
@@ -29,10 +34,11 @@ class CartPage extends Component {
         for(let item of cart){
             total += item.product.price * item.quantity
         }
-        return total
+        return formatMoney(total)
     }
 
     render() {
+        const { oauth } = this.props
         const token = cookie.get('token');
         if(!token){
             var cart = JSON.parse(localStorage.getItem('cart'))
@@ -46,7 +52,7 @@ class CartPage extends Component {
                     <Row>
                         <Col xs="12">
                             <div className="cart-title-quantity">
-                                Gio hang <span>({ cart ? cart.length : 0} san pham)</span>
+                                Giỏ hàng <span>({ cart ? cart.length : 0} sản phẩm)</span>
                             </div>
                         </Col>
                         <Col md="9">
@@ -63,16 +69,21 @@ class CartPage extends Component {
                             <div className="cart-order">
                                 <div className='cart-pay'>
                                     <div className='pa-content'>
-                                        Tam tinh
-                                        <span>{ cart ? this.totalCart(cart) : 0 } d</span>
+                                        Tạm tính
+                                        <span>{ cart ? this.totalCart(cart) : 0 }</span>
                                     </div>
                                     <div className='pa-content'>
-                                        Thanh tien
-                                        <span className='pa-done-money'>{ cart ? this.totalCart(cart) : 0 } d</span>
+                                        Thành tiền
+                                        <span className='pa-done-money'>{ cart ? this.totalCart(cart) : 0 }</span>
                                     </div>
 
                                 </div>
-                                <button className='cart-check-out'>Tien hanh thanh toan</button>
+                                <Link to='/cart/checkout'
+                                    disable={true}
+                                 className={classnames('btn btn-danger cart-check-out',
+                                  {'point-disable': !token || cart.length === 0})}>
+                                 {!token ? "Đăng nhập để thanh toán" : "Tiến hành thanh toán"}
+                                 </Link>
                             </div>
                         </Col>
                     </Row>

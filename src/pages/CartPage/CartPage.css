@@ -10,7 +10,13 @@ body.selling-cart [class*='col-']{
 body.selling-cart .col-md-9{
     padding-right: 0px !important;
 }
+
+#main-cart{
+    margin-bottom: 4em;
+}
+
 .cart-title-quantity {
+    font-weight: 500;
     font-size: 1.2em;
     text-transform: uppercase;
     margin-bottom: .5em;
@@ -21,11 +27,13 @@ body.selling-cart .col-md-9{
     text-transform: lowercase;
     font-size: .9em;
     color: #333;
+    font-weight: 400;
 }
 
 .cart-list {
     border-radius: 3px;
     background:  #fff;
+    box-shadow: 0px 0 6px 0 #d1d4dc
 }
 
 .cart-list .c-info{
@@ -39,6 +47,15 @@ body.selling-cart .col-md-9{
 
 .c-info{
     display: flex;
+}
+
+.c-delete-item i{
+    font-size: 1.2em;
+}
+
+.c-delete-item i:hover {
+    color: red;
+    cursor: pointer;
 }
 
 .c-info-name {
@@ -123,6 +140,7 @@ button.c-btn:focus{
     margin-bottom: 1em;
     border-radius: 3px;
     background: #fff;
+     box-shadow: 0px 0 6px 0 #d1d4dc
 }
 
 .cart-pay .pa-content{
@@ -130,7 +148,9 @@ button.c-btn:focus{
     display: flex;
     align-items: center;
     padding: 1em;
+    font-weight: 500;
     border-bottom: 1px solid #ddd;
+   
 }
 
 .cart-pay .pa-content:last-child{
@@ -147,21 +167,26 @@ button.c-btn:focus{
     color: tomato;
 }
 
-button.cart-check-out{
+a.cart-check-out{
     width: 100%;
-    padding: 6px;
+    padding: 10px;
     border-radius: 3px;
     border : 1px solid tomato;  
     background: tomato;
     color: #fff;
+    text-decoration: none;
+    box-shadow: 0px 0 6px 0 #d1d4dc
 }
 
-button.cart-check-out:focus{
-    outline: none;
-}
-
-button.cart-check-out:hover{
+a.cart-check-out:hover{
     background: #d04f38;
     border-color: #d04f38;
+}
+
+a.cart-check-out.point-disable{
+    pointer-events: none;
+    cursor: no-drop;
+    background: #333;
+    border-color: #333;
 }
 

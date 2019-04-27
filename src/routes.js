@@ -1,11 +1,13 @@
 import React from 'react';
 import lodash from 'lodash';
 
-import HomePageContainer from './conatiners/HomePageContainer';
-import CatalogPageContainer from './conatiners/CatalogPageContainer';
-import ProductDetailtContainer from './conatiners/ProductDetailtContainer';
-import OauthContainer from './conatiners/OauthContainer';
-import CartPageContainer from './conatiners/CartPageContainer'
+import HomePageContainer from './containers/HomePageContainer';
+import CatalogPageContainer from './containers/CatalogPageContainer';
+import ProductDetailtContainer from './containers/ProductDetailtContainer';
+import CartPageContainer from './containers/CartPageContainer'
+import UserProfileContainer from './containers/UserProfileContainer'
+
+import CartCheckOutPage from './pages/CartCheckOutPage/CartCheckOutPage'
 
 function isNameProduct(name){
     var nameArr = name.split('-');
@@ -22,14 +24,19 @@ const routes = [
         main : () => <HomePageContainer/>
     },
     {
-        path : '/login',
-        exact : true,
-        main : ({ history }) => <OauthContainer history = {history} />
-    },
-    {
         path : '/cart',
         exact : true,
         main : ({match}) => <CartPageContainer match = {match}/>
+    },
+    {
+        path : '/cart/checkout',
+        exact : true,
+        main : () => <CartCheckOutPage />
+    },
+    {
+        path : '/user-profile',
+        exact : true,
+        main : () => <UserProfileContainer />
     },
     {
         path : '/:name',

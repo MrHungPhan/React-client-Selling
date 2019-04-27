@@ -4,6 +4,10 @@ import {  Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { Alert } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
+// validate
+const required = value => (value || typeof value === 'number' ? undefined : 'Required')
 
 const emailValidate = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
@@ -57,24 +61,31 @@ class SignInModal extends PureComponent {
     }
 
     toggleOauth = () => {
-        this.props.toggleOauth()
+        this.props.toggleOauth();
+        this.props.reset();
+    }
+
+    toggleSignUp = () => {
+        this.props.toggleSignUp();
+        this.props.reset();
     }
 
     onSubmit = (formData) => {
         this.props.onSignIn(formData);
-
     }
 
     render() {
-        var { handleSubmit, errorMessage } = this.props
-        const { email , password } = this.props;
+        var { handleSubmit, errorSignin, messageVerify } = this.props
 
         return (
             <Modal isOpen={this.state.modalSignIn} toggle={this.toggleSignIn} className="modal-signin">
             <ModalHeader toggle={this.toggleSignIn}>Đăng nhập</ModalHeader>
             <ModalBody>
                 {
-                    errorMessage ?  <Alert color="danger">{errorMessage}</Alert> : ''
+                    errorSignin ?  <Alert color="danger">{errorSignin}</Alert> : ''
+                }
+                {
+                    messageVerify ?  <Alert color="danger">{messageVerify}</Alert> : ''
                 }
                 <form onSubmit = {handleSubmit(this.onSubmit)}>
                     <fieldset>
@@ -85,7 +96,7 @@ class SignInModal extends PureComponent {
                             type="text"
                             id="email"
                             component={renderField}
-                            validate = {emailValidate}
+                            validate = {[emailValidate, required]}
                             warn = {aol}
                         />
                     </fieldset>
@@ -96,16 +107,18 @@ class SignInModal extends PureComponent {
                             name="password"
                             type="password"
                             id="password"
-                            component="input"
+                            component={renderField}
+                            validate = {required}
+                            warn = {aol}
                         />
                     </fieldset>
-                    <div onClick={this.toggleOauth} className="toggle-fb-gg"><i>Dang nhap bang <span>Facebook</span> hoac <span>Gmail</span> </i></div>
-                    <button type="submit">Dang nhap</button>
+                    <div onClick={this.toggleOauth} className="toggle-fb-gg"><i>Đăng nhập bằng <span>Facebook</span> hoặc <span>Gmail</span> </i></div>
+                    <button type="submit">Đăng nhập</button>
                 </form>
             </ModalBody>
             <ModalFooter>
-                <div className="style-title-footer forget-pass" onClick={this.toggleSignIn}><i>Quen mat khau</i></div>
-                <div className="style-title-footer" onClick={this.toggleOauth}><i>Dang ki</i></div>
+                <div className="style-title-footer forget-pass" onClick={this.toggleSignIn}><i>Quên mật khẩu</i></div>
+                <div className="style-title-footer" onClick={this.toggleSignUp}><i>Đăng kí</i></div>
             </ModalFooter>
         </Modal>
         );

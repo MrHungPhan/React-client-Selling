@@ -5,7 +5,7 @@ import lodash from 'lodash';
 import { Cookies } from 'react-cookie'
 
 import * as actions from '../actions/ActionTypes';
-import CatalogPage from '../pages/CatalogPage';
+import CatalogPage from '../pages/CatalogPage/CatalogPage';
 import ProductItem from '../components/CatalogPage/ProductItem';
 import QuickViewProduct2 from '../components/QuickViewProduct2';
 
@@ -71,11 +71,15 @@ class CatalogPageContainer extends Component {
     }
 
     render() {
-        var { products, productDetailt } = this.props
+        var { productsCatalog, productDetailt } = this.props
+        console.log(productsCatalog)
         var { modal } = this.state;
         return (
-            <CatalogPage>
-               { this.showProducts(products) }
+            <CatalogPage
+                slider={productsCatalog.slider ? productsCatalog.slider : ''}
+                path = {productsCatalog.path}
+            >
+               { this.showProducts(productsCatalog) }
                <QuickViewProduct2 
                 product = {productDetailt}
                 modal = {modal}
@@ -86,11 +90,13 @@ class CatalogPageContainer extends Component {
         );
     }
 
-    showProducts = (products) => {
+    showProducts = (productsCatalog) => {
         var resuilt = [];
         var { match } = this.props;
-        console.log(products)
-        resuilt = products.map((item, index) => {
+        console.log(productsCatalog)
+        var { products } = productsCatalog;
+        if(products){
+             resuilt = products.map((item, index) => {
             return <ProductItem
                     fetchProductDetailt = {this.fetchProductDetailt}
                     toggle = {this.toggle}
@@ -98,7 +104,9 @@ class CatalogPageContainer extends Component {
                     product = {item}
                     match = {match}
                     />
-        })
+          })
+        }
+       
 
         return resuilt;
     }
@@ -110,7 +118,7 @@ CatalogPageContainer.propTypes = {
 
 const mapStateToProps = (state) => {
     return{
-        products : state.productsCatalogPage,
+        productsCatalog : state.productsCatalogPage,
         productDetailt : state.productDetailt
     }
 }

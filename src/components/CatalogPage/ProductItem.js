@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 import { Spring, config } from 'react-spring/renderprops';
 import './layout.css'
 
-import change_alias from '../../utils/convertLink'
+import change_alias from '../../utils/convertLink';
+import formatMoney from '../../utils/formatMoney'
 
 class ProductItem extends PureComponent {
     constructor(props){
@@ -55,7 +56,7 @@ class ProductItem extends PureComponent {
                                         {product.name}
                                     </div>
                                     <div className="pro-price">
-                                       { product.price }$
+                                       {formatMoney(product.price)}
                                      </div>
                                 </div>
                             </div>

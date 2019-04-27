@@ -1,18 +1,22 @@
-.modal-oauth .modal-body, .modal-signin .modal-body {
+.modal-open {
+    padding-right: 15px;
+}
+
+.modal-oauth .modal-body, .modal-signin .modal-body, .modal-signup .modal-body {
     padding-right: 1.5em;
     padding-left: 1.5em;
     display: flex;
     flex-direction: column;
 }
 
-.modal-oauth .modal-header, .modal-signin .modal-header{
+.modal-oauth .modal-header, .modal-signin .modal-header, .modal-signup .modal-header{
     padding-right: 1.5em;
     padding-left: 1.5em;
     border: none;
     padding-bottom: .3em;
 }
 
-.modal-oauth .modal-footer, .modal-signin .modal-footer{
+.modal-oauth .modal-footer, .modal-signin .modal-footer, .modal-signup .modal-footer{
     padding-left: 1.5em !important;
     padding-right: 1.5em !important;
     padding-top: 0 !important;
@@ -21,12 +25,13 @@
     display: flex;
 }
 
-.modal-signin .modal-title, .modal-oauth .modal-title{
+.modal-signin .modal-title, .modal-oauth .modal-title, .modal-signup .modal-title{
     text-transform: uppercase;
     font-size: 1.2em;
     font-weight: 600
 }
 
+/* Modal Oauth */
 
 .modal-oauth .modal-footer .toggle-signin{
     flex-grow: 2
@@ -74,6 +79,7 @@ button.oauth-button.google-oauth:hover{
     background: #bc000b;
 }
 
+ /* Footer */
 .style-title-footer i {
     text-transform: inherit;
     font-size: .9rem;
@@ -90,7 +96,7 @@ button.oauth-button.google-oauth:hover{
 }
 
 
-
+/* Modal SignIn */
 .modal-signin input {
     padding: .4rem .5rem;
     /* padding-top: .4rem; */
@@ -98,12 +104,13 @@ button.oauth-button.google-oauth:hover{
     /* padding-bottom: .4rem; */
     border: 1px solid #c7c7cd;
     border-radius: 3px;
-    margin-bottom: .7em;
+    margin-bottom: .3em;
 }
 
-.modal-signin input[type ="password"] {
-    margin-bottom: 1.3em
+.modal-signin fieldset{
+    margin-bottom: 1rem;
 }
+
 .modal-signin button[type ="submit"] {
     height: 2.4rem;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
@@ -129,6 +136,7 @@ button.oauth-button.google-oauth:hover{
     text-align: center;
     font-size: .9rem;
     margin-bottom: 1rem;
+    margin-top: 1.1rem;
 }
 
 .modal-signin .toggle-fb-gg:hover {
@@ -144,75 +152,6 @@ button.oauth-button.google-oauth:hover{
     color: #e5101d
 }
 
-.user-logout{
-    text-transform: capitalize;
-    position: relative;
-    color: #fff;
-}
-
-.user-logout:hover {
-    cursor: pointer;
-}
-
-
-.user-logout:hover ul.user-profile-info{
-    display: block
-}
-
-ul.user-profile-info{
-    display: none;
-    position: absolute;
-    list-style: none;
-    background-color: #fff;
-    padding: 0;
-    margin: 0;
-    width: 150px;
-    left: -50%;
-    /* top: 36px; */
-    top: 0px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-}
-
-ul.user-profile-info li{
-    transition: all .5s;
-    padding: .5rem 1rem;
-}
-
-/* ul.user-profile-info::before{
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: .5rem solid transparent;
-    border-right: .5rem solid transparent;
-    border-bottom: .6rem solid #fff;
-    position: absolute;
-    top : -.6rem;
-    right: 50%;
-} */
-
-ul.user-profile-info li:hover{
-    background: #f1f1f1
-}
-
-ul.user-profile-info li a, ul.user-profile-info li span {
-    font-size: .9em;
-    transition: all .5s;
-    text-decoration: none;
-    color: #111;
-}
-
-ul.user-profile-info li:hover > a, ul.user-profile-info li:hover > span{
-    text-decoration: none;
-    color: #e5101d;
-}
-
-
-ul.user-profile-info li i{
-    color: #c7c7cd;
-    margin-right: .5em;
-}
-
 .modal-signin button[type ="submit"]:focus {
     outline: none;
 }
@@ -224,5 +163,40 @@ span.err-email {
 
 i.fas.fa-exclamation-circle.error-warn {
     margin-right: .5rem;
+}
+
+/* Modal SignUp */
+
+.modal-signup fieldset{
+    margin-bottom: 1rem;
+}
+
+.modal-signup input{
+    border: 1px solid #f1d09c;
+    padding: .5rem;
+    width: 100%;
+    border-radius: 3px;
+    margin-bottom: .5rem;
+}
+
+.modal-signup button[type='submit']{
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background:  #e53935;
+    color: #fff;
+    font-size: 1.1em;
+    text-transform: capitalize;
+    border-radius: 3px;
+    margin-top: 1.5em;
+    font-weight: 500
+}
+.modal-signup button:focus{
+    outline: none;
+}
+
+img.loading-signup{
+    width: 2em;
+    margin-right: 1em;
 }
 

@@ -14,28 +14,26 @@ export default class SliderCatalog extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
+    var { slider } = this.props;
+    console.log(slider)
     return (
-      <div>
-        <Slider {...settings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
-        </Slider>
+      <div>{
+        slider ? <Slider {...settings}>
+              {
+                slider ? slider.map(item => {
+                  return  <div 
+                            className = "back"
+                            key ={item.id}
+                            >
+                            <img style={{width : "100%", height: "430px", objectFit: "cover"}} 
+                            src={item.image} />
+                      </div>
+                }) : ''
+        }
+         
+        </Slider> : ''
+      }
+        
       </div>
     );
   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import FacebookButton from 'react-facebook-login/dist/facebook-login-render-props'
 import GoogleButton from 'react-google-login';
 import {  Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
 class ThirtOauthModal extends PureComponent {
     constructor(props){
@@ -28,6 +29,10 @@ class ThirtOauthModal extends PureComponent {
 
     toggleSignIn = () => {
         this.props.toggleSignIn();
+    }
+
+    toggleSignUp = () => {
+        this.props.toggleSignUp()
     }
 
     responseGoogle = (response) => {
@@ -76,8 +81,8 @@ class ThirtOauthModal extends PureComponent {
 
             </ModalBody>
             <ModalFooter>
-                <div className="style-title-footer toggle-signin" onClick={this.toggleSignIn}><i>Dang nhap bang tai khoan</i></div>
-                <div className="style-title-footer" onClick={this.toggleOauth}><i>Dang ki</i></div>
+                <div className="style-title-footer toggle-signin" onClick={this.toggleSignIn}><i>Đăng nhập bằng tài khoản</i></div>
+                <div className="style-title-footer" onClick={this.toggleSignUp}><i>Đăng kí</i></div>
             </ModalFooter>
         </Modal>
 

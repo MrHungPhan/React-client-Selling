@@ -5,19 +5,20 @@ import { Container, Row, Col } from 'reactstrap';
 
 class Filter extends Component {
     render() {
+        var { path } = this.props
         return (
             <div>
                 <Container>
-                    <Row>
-                        <Col md = "6" sm="12">
+                    <div className="catalog-title">
+                       
                             <div className ="path-cata">
-                                Trang chu > So mi
+                                Trang chủ / {path}
                             </div>
-                        </Col>
-                        <Col md = "6" sm="12">
+                     
+                      
                             <div className="filter">
                                 <div className="fiter-title">
-                                    <span>Sap xep theo</span>
+                                    <span>Sắp xếp theo</span>
                                 </div>
                                 <ul className="filter-content">
                                     <li className="filter-item">
@@ -43,8 +44,8 @@ class Filter extends Component {
                                     </li>
                                 </ul>
                             </div>
-                        </Col>
-                    </Row>
+                      
+                    </div>
                 </Container>
             </div>
         );

@@ -15,7 +15,8 @@ export default function callApi(endpoint, method ='GET', body){
         },
         data : body
     }).catch( err => {
-        console.log(err);
+        console.log(err)
+        return Promise.reject(err);
     })
     }else{
         return axios({ // tra ve promise
@@ -23,8 +24,8 @@ export default function callApi(endpoint, method ='GET', body){
             url : `${config.API_URL}/${endpoint}`,
             data : body
         }).catch( err => {
-            console.log(err);
+            console.log(err)
+            return Promise.reject(err);
         })
     }
-    
 }

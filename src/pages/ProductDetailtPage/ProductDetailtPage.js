@@ -5,7 +5,7 @@ import './pt.css'
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 
-import ProductDetailt from '../components/ProductsDetailtPage/ProductDetailt';
+import ProductDetailt from '../../components/ProductsDetailtPage/ProductDetailt';
 
 class ProductDetailtPage extends Component {
     constructor(props) {

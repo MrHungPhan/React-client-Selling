@@ -1,3 +1,15 @@
+.catalog-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.path-cata{
+    text-transform: uppercase;
+    flex-grow: 1;
+    font-weight: 500
+}
+
 .silder-relative {
     margin-bottom: 1em;
 }

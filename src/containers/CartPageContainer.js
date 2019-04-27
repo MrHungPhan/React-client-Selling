@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/ActionTypes';
 import { Cookies } from 'react-cookie';
 
-import CartPage from '../pages/CartPage';
+import CartPage from '../pages/CartPage/CartPage';
 
 const cookie = new Cookies();
 
@@ -17,9 +17,10 @@ class CartPageContainer extends Component {
     }
 
     render() {
-        var { match, cart } = this.props
+        var { match, cart, oauth } = this.props
         return (
             <CartPage 
+            oauth={oauth}
             match = {match}
             cart = {cart}
             />
@@ -33,7 +34,8 @@ CartPageContainer.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        cart : state.cart
+        cart : state.cart,
+        oauth : state.oauth
     }
 }
 

@@ -7,7 +7,7 @@ import {
     Nav,
     NavItem,
     Container,
-    
+
 } from 'reactstrap';
 import classnames from 'classnames'
 import { Link } from 'react-router-dom'
@@ -27,7 +27,7 @@ export default class Example extends React.PureComponent {
         };
     }
 
-  
+
 
     toggleMenu() {
         this.setState({
@@ -61,7 +61,15 @@ export default class Example extends React.PureComponent {
 
     render() {
         var { isFixedMenu } = this.state
-        var { cart } = this.props;
+        var { cart,
+            userProfile,
+            oauthGoogle,
+            onSignIn,
+            onSignUp,
+            logoutUser,
+            resetMessage,
+            resetErrorSign,
+            oauth } = this.props;
         return (
             <div>
                 <Navbar color="light" className={classnames({ 'fixed-top': isFixedMenu })} light expand="md">
@@ -73,15 +81,20 @@ export default class Example extends React.PureComponent {
                                 {this.props.children}
                             </Nav>
                         </Collapse>
-    
-                        <Oauth 
-                            userProfile ={this.props.userProfile}
-                             onSignIn = {this.props.onSignIn}
-                             oauthGoogle = {this.props.oauthGoogle}
-                             errorMessage={this.props.errorMessage}
-                             logoutUser = {this.props.logoutUser}
-                             />    
-                        <MenuCart cart ={cart} />
+
+                        <Oauth
+                            onSignIn={onSignIn}
+                            onSignUp={onSignUp}
+                            oauthGoogle={oauthGoogle}
+
+                            userProfile={userProfile}   
+                            logoutUser={logoutUser}
+                             oauth={oauth}
+
+                             resetMessage={resetMessage}
+                             resetErrorSign={resetErrorSign}
+                        />
+                        <MenuCart cart={cart} />
                     </Container>
 
                 </Navbar>

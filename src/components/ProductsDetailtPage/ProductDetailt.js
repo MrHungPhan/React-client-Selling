@@ -5,6 +5,8 @@ import { Container, Row, Col, Button, Form, FormGroup, Label, Input, TabContent,
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import { Cookies } from 'react-cookie';
+import formatMoney from '../../utils/formatMoney'
+import './ProductDetailt.css'
 
 const cookie = new Cookies();
 
@@ -105,43 +107,10 @@ class ProductDetailt extends PureComponent {
         }
     }
 
-    // checkExitsProductOnCartLocal = (productNew, cart) => {
-    //     var check = -1;
-    //     for (let i = 0; i < cart.length; i++) {
-    //         if (lodash.isEqual(productNew.product, cart[i].product) && lodash.isEqual(productNew.color, cart[i].color) && lodash.isEqual(productNew.size, cart[i].size)) {
-    //             check = i;
-    //         }
-    //     }
-    //     return check;
-    // }
-
     onSubmit = (e) => {
         e.preventDefault();
         var product = this.getProductAddCart(this.state.form)
-
-        // const token = cookie.get('token');
-
-        // console.log(product)
-        // // if not authencation 
-        // if (!token) {
-        //     var cart = JSON.parse(localStorage.getItem("cart"));
-        //     // if cart localStrorage exist
-        //     if (cart) {
-        //         const check = this.checkExitsProductOnCartLocal(product, cart);
-        //         if (check !== -1) {
-        //             cart[check].quantity += product.quantity;
-        //         } else {
-        //             cart.push(product);
-        //         }
-
-        //     } else { // elset nto exits , create new
-        //         cart = [];
-        //         cart.push(product);
-        //     }
-        //     localStorage.setItem("cart", JSON.stringify(cart))
-        // }else{
             this.props.addToCart(product)
-        // }
 
         // reset form data
         this.setState({
@@ -244,7 +213,7 @@ class ProductDetailt extends PureComponent {
                                 <h2>{product.length > 0 ? product[0].name : ''}</h2>
                             </div>
                             <div className="p-price">
-                                <h3>{product.length > 0 ? product[0].price : ''}$</h3>
+                                <h3>{product.length > 0 ? formatMoney(product[0].price) : ''}</h3>
                             </div>
                             <div className="p-actions">
                                 <Form onSubmit={this.onSubmit}>

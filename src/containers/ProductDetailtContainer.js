@@ -5,7 +5,7 @@ import lodash from 'lodash';
 import { Cookies } from 'react-cookie';
 
 import * as actions from '../actions/ActionTypes';
-import ProductDetailtPage from '../pages/ProductDetailtPage'
+import ProductDetailtPage from '../pages/ProductDetailtPage/ProductDetailtPage'
 
 const cookie = new Cookies()
 

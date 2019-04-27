@@ -1,0 +1,26 @@
+.nav-tabs{
+    border-bottom: 2px dotted #111;
+}
+
+.nav-tabs li.nav-item:hover {
+    border: none;
+    cursor: pointer;
+}
+
+.nav-tabs li.nav-item:first-child{
+    padding-left: 0;
+}
+
+.nav-tabs li.nav-item{
+    padding: .5em 1em;
+}
+
+.nav-tabs .item-tab.active{
+    color: #2ecc71
+}
+
+.nav-tabs .item-tab{
+    font-size: 1.1em;
+    font-weight: 600;
+    
+}

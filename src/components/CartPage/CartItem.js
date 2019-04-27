@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap'
 import lodash from 'lodash'
+import formatMoney from '../../utils/formatMoney';
 
 class CartItem extends Component {
 
@@ -37,7 +38,7 @@ class CartItem extends Component {
                                     
                                 </div>
                                 <div className='c-style c-price'>
-                                   {productInfo.price}
+                                   {formatMoney(productInfo.price)}
                              </div>
                                 <div className='c-style c-quantity'>
                                     <button className='c-btn c-plus'>+</button>

@@ -121,3 +121,77 @@ span.cart-length {
         top: -5px;
         right: 0px;
     }
+
+     /* user Profile */
+.user-profile-menu{
+    text-transform: capitalize;
+    position: relative;
+    color: #fff;
+    font-size: .9em
+}
+
+.user-profile-menu:hover {
+    cursor: pointer;
+}
+
+ul.user-profile-info{
+    position: absolute;
+    list-style: none;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    width: 180px;
+    left: -25%;
+    top: 44px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border : 1px solid #ddd;
+    z-index: 1000;
+}
+
+ul.user-profile-info li{
+    transition: all .5s;
+    padding: .5rem 1rem;
+}
+
+ul.user-profile-info::before{
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: .5rem solid transparent;
+    border-right: .5rem solid transparent;
+    border-bottom: .6rem solid #fff;
+    position: absolute;
+    top : -.6rem;
+    right: 40%;
+}
+
+ul.user-profile-info li:hover{
+    background: #f1f1f1
+}
+
+ul.user-profile-info li a, ul.user-profile-info li span {
+    font-size: .9em;
+    transition: all .5s;
+    text-decoration: none;
+    color: #111;
+}
+
+ul.user-profile-info li:hover > a, ul.user-profile-info li:hover > span{
+    text-decoration: none;
+    color: #e5101d;
+}
+
+
+ul.user-profile-info li i{
+    color: #c7c7cd;
+    margin-right: .5em;
+}
+
+.user-profile-menu img.user-image-menu{
+    height: 1.9em;
+    width: 1.8em;
+    margin-right: .8em;
+    border: 1px solid #fff;
+    border-radius: 3px;
+}

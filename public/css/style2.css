@@ -1,5 +1,5 @@
-* {
-
+body {
+    font-family: 'Roboto', sans-serif;
 }
 
 .product-images-slider .slick-slide.slick-active {

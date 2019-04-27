@@ -85,21 +85,19 @@ export const signUp = (data) => {
     return async dispatch => {
         try {
             const res = await callApi('user/signUp', 'POST', data)
-            dispatch(onStoreToken(res.data.token))
-            localStorage.setItem('token', res.data.token)
+            if(res.status === 200){
+                dispatch({
+                    type: type.OAUTH_SIGN_UP,
+                    message : res.data.message
+                })
+            }
+            
         } catch (error) {
             dispatch({
-                type: type.OAUTH_ERROR,
-                error: "Email da ton tai"
+                type: type.SIGNUP_ERROR,
+                error: "Email đã tồn tại"
             })
         }
-    }
-}
-
-export const onStoreToken = (token) => {
-    return {
-        type: type.OAUTH_SIGN_UP,
-        token
     }
 }
 
@@ -107,10 +105,8 @@ export const onStoreToken = (token) => {
 // Sign in Account
 export const signIn = (data) => {
     return async dispatch => {
-        try {
             const res = await callApi('user/signIn', 'POST', data);
-            if (res.status === 200) {
-
+            if (res.data.token) {
                  //  localStorage.setItem('token', res.data.token)
                  cookie.set('token', res.data.token, {
                     maxAge: 60 * 60 * 60 * 24 * 5
@@ -120,14 +116,13 @@ export const signIn = (data) => {
                     type: type.OAUTH_SIGN_IN,
                     token: res.data.token
                 })
-
+            }else{
+                dispatch({
+                    type: type.OAUTH_ERROR,
+                    error : res.data.message
+                })
             }
-        } catch (error) {
-            dispatch({
-                type: type.OAUTH_ERROR,
-                error: "Ten dang nhap hoac mat khau khong chinh xac"
-            })
-        }
+
     }
 }
 
@@ -173,6 +168,23 @@ export const logOutUser = () => {
         dispatch({
             type : type.LOGOUT_USER,
         });
+    }
+}
+
+// reset message to toggle to signin modal because sign up sccess -> sign modal base message => message must change
+export const resetMessage = () => {
+    return dispatch =>{
+        dispatch({
+            type : type.RESET_MESSAGE
+        })
+    }
+}
+
+export const resetErrorSign = () => {
+    return dispatch => {
+        dispatch({
+            type : type.RESET_ERROR_SIGNIN
+        })
     }
 }
 

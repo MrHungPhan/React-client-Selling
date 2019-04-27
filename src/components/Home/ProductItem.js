@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import classnames from 'classnames';
 
 import change_alias from '../../utils/convertLink';
+import formatMoney from '../../utils/formatMoney'
 
 
 class ProductItem extends PureComponent {
@@ -52,7 +53,7 @@ class ProductItem extends PureComponent {
                                         {product.name}
                                     </div>
                                     <div className="pro-price">
-                                        {product.price}$
+                                        {formatMoney(product.price)}
                                      </div>
                                 </div>
                             </div>

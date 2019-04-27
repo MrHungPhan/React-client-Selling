@@ -6,7 +6,7 @@ ul.slick-dots {
     display: none !important;
 }
 
-.slick-slider h3{
-    height: 430px;
-    background: blue;
+
+.slick-slider {
+    margin-bottom: 1em;
 }

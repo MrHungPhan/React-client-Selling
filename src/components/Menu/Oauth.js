@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import lodash from 'lodash';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -6,67 +6,117 @@ import { Cookies } from 'react-cookie';
 import './OauthModal.css'
 
 import SignInModal from './SignInModal';
-import OauthModal from './OauthModal';
+import ThirtOauthModal from './ThirtOauthModal';
+import SignUpModal from './SignUpModal'
+import UserProfile from './UserProfile';
 
 var cookie = new Cookies();
 
-class Oauth extends Component {
+class Oauth extends PureComponent {
     constructor(props) {
         super(props);
 
         this.toggleOauth = this.toggleOauth.bind(this);
         this.toggleSignIn = this.toggleSignIn.bind(this);
+        this.toggleSignUp = this.toggleSignUp.bind(this);
 
         this.state = {
             modalOauth: false,
             modalSignIn : false,
+            modalSignUp : false,
+            messageVerify : '',
+            isShowProfile : false
         }
     }
 
     toggleOauth() {
         if (this.state.modalSignIn) {
             this.setState(prevState => ({
+                messageVerify: '',
                 modalOauth: !prevState.modalOauth,
-                modalSignIn: false
+                modalSignIn: false,
+                toggleSignUp: false
             }))
         } else {
             this.setState(prevState => ({
                 modalOauth: !prevState.modalOauth
             }));
         }
+
+        this.props.resetErrorSign()
     }
    
     toggleSignIn() {
         document.body.style.paddingRight = 0;
         this.setState(prevState => ({
+            messageVerify: '',
             modalOauth: false,
+            modalSignUp: false,
             modalSignIn: !prevState.modalSignIn
         }));
+        console.log(this.state)
+        this.props.resetErrorSign()
     }
 
+    toggleSignUp() {
+        document.body.style.paddingRight = 0;
+
+        this.setState( {
+            messageVerify: '',
+            modalOauth: false,
+            modalSignIn: false,
+            modalSignUp: !this.state.modalSignUp
+       });
+       this.props.resetMessage();
+       this.props.resetErrorSign()
+    }
+
+    messageToSignin= (message) => {
+        this.setState({
+            messageVerify : message
+        })
+    }
+
+    showUserProfile = () => {
+        this.setState({
+            ...this.state, isShowProfile : !this.state.isShowProfile
+        })
+    }
+    
     logoutUser = () => {
         this.props.logoutUser()
     }
 
+    componentDidUpdate(){
+        document.body.addEventListener('click', (e) => {
+            var userElement = document.getElementsByClassName('user-profile-info');
+            var nameUser = document.getElementsByClassName('user-profile-menu');
+            console.log(e.target.parentElement.parentElement);
+            console.log(userElement[0]);
+            if((e.target.parentElement !== userElement[0] && e.target !== nameUser[0])){
+                this.setState({
+                    ...this.state,
+                    isShowProfile : false
+                })
+            }
+        })
+    }
 
     render() {
-        const { userProfile, errorMessage, onSignIn, oauthGoogle } = this.props;
-
+        const { userProfile, 
+                onSignIn,
+                onSignUp,
+                oauthGoogle,
+                oauth } = this.props;
+        const { isShowProfile } =this.state
         const token = cookie.get('token')
-
+       
         return (
             <div>     {
-                token && <div onClick={this.showLogout} className="user-logout">{userProfile.display_name}
-                    
-                        <ul className="user-profile-info">
-                            <li>
-                                <i className="fas fa-user-circle"></i><NavLink to='/'>Thong tin</NavLink>
-                            </li>
-                            <li onClick={this.logoutUser}>
-                                <i className="fas fa-sign-out-alt"></i><span>Dang xuat</span>
-                            </li>
-                        </ul>
-                    
+                token && <div onClick={this.showUserProfile} className="user-profile-menu">
+                        <img className='user-image-menu' src={userProfile.image} />
+                        {userProfile.display_name}
+                       { isShowProfile && <UserProfile logoutUser={this.logoutUser} /> }
                 </div>
             }
             {
@@ -76,10 +126,11 @@ class Oauth extends Component {
                     </div>
 
                      {/* Oauth Google FaceBook */}
-                    <OauthModal
+                    <ThirtOauthModal
                     toggleSignIn={this.toggleSignIn}
                      modalOauth={this.state.modalOauth}
                      toggleOauth ={this.toggleOauth}
+                    toggleSignUp={this.toggleSignUp}
 
                      oauthGoogle = {oauthGoogle}
                     />    
@@ -90,9 +141,23 @@ class Oauth extends Component {
                      modalSignIn={this.state.modalSignIn}
                      toggleOauth={this.toggleOauth}
                     toggleSignIn={this.toggleSignIn}
+                    toggleSignUp={this.toggleSignUp}
 
-                    errorMessage = {errorMessage}
+                    errorSignin = {oauth.errorSignin}
                     onSignIn ={onSignIn}
+                    messageVerify={this.state.messageVerify}
+                    />
+
+                    <SignUpModal 
+                        modalSignUp={this.state.modalSignUp}
+                        toggleSignIn={this.toggleSignIn}
+                        toggleSignUp={this.toggleSignUp}
+                        messageToSignin={this.messageToSignin}
+
+                        errorSignup = {oauth.errorSignup}
+                        onSignUp={onSignUp}
+                        message={oauth.message}
+                        
                     />
                       
                 </div>

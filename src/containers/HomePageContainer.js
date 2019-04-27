@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/ActionTypes';
 import { Cookies } from 'react-cookie';
 
-import HomePage from '../pages/HomePage';
+import HomePage from '../pages/HomePage/HomePage';
 import SessionProducts from '../components/Home/SessionProducts';
 import ProductItem from '../components/Home/ProductItem';
 import QuickViewProduct from '../components/QuickViewProduct';

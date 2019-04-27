@@ -1,0 +1,114 @@
+.profile-left{
+    border-right: 1px solid #eee;
+}
+.profile-left.col-md-2{
+    padding-right: 0 !important;
+}
+
+.profile-left li.nav-item:hover a.nav-link{
+    background: #fff;
+    color: red;
+    font-weight: 500;
+}
+
+.profile-left li.nav-item a.nav-link{
+    font-weight: 0;
+    color: #666;
+    font-size: .9em;
+    padding-left: 0;
+    transition: all .3s;
+}
+
+.profile-left li.nav-item a.nav-link.active{
+    background: #fff;
+    font-weight: 500;
+    color: red
+}
+
+.profile-left li.nav-item a>i{
+    margin-right: 3px;
+}
+
+.profile-left p.sidebar-title{
+    font-size: .999em;
+    font-weight: 500;
+    background: #eee;
+    margin-bottom: .5em;
+    padding: .3em .5em;
+    border-left: 2px solid red;
+    color: #666;
+    margin-top: 1em
+}
+
+.profile-left li.nav-item.sidebar-user{
+    display: flex;
+    align-items: center
+}
+
+img.s-user-img{
+    width: 3em;
+    height: 3em;
+    border : 1px solid #eee;
+    border-radius: 50%;
+}
+
+p.s-user-name{
+    margin-bottom: 0;
+    flex-grow: 2;
+    text-align: center;
+    font-weight: 500;
+    color: #444;
+}
+
+.profile-right .update-user-info{
+}
+
+.profile-right .update-image-user{
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-right .update-image-user img{
+    width: 100%;
+    height: 100%;
+}
+
+.profile-right .frm-update-info{
+
+}
+
+.profile-right .form-group {
+    margin-bottom: 2.2em;
+}
+
+.profile-right .form-group label{
+    font-size: .9em;
+}
+
+.profile-right .form-control:disabled{
+    border: none;
+}
+
+.profile-right .btn-update-user{
+    padding-left: 0 !important;
+}
+
+.profile-right .btn-update-user button{
+    border-radius: 0;
+    background: tomato;
+    border-color: tomato;
+    padding: 6px 15px;
+}
+
+.profile-right .form-group .form-control{
+    border-radius: .15rem;
+    font-size: .9em;
+}
+
+.profile-right .form-group .form-control:focus{
+    outline: none;
+    border-color: #ddd;
+    box-shadow: none;
+}

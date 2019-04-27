@@ -19,7 +19,6 @@ class MenuContainer extends Component {
         const token = cookie.get('token');
         if(token && this.props.isAuthencated){
             this.props.getUserProfile();
-             this.props.fetchGetCart();
         }
         this.props.fetchMenu();
     }                                                                                                                                                                                                                                                                                                                                             
@@ -37,8 +36,14 @@ class MenuContainer extends Component {
         if(token){
             if(lodash.isEqual(nextProps.userProfile, {})){
                 this.props.getUserProfile();
+                this.props.fetchGetCart();
             }     
         }
+    }
+
+    // oauth
+    onSignUp = (values) => {
+        this.props.onSignUp(values)
     }
 
     onSignIn = (dataForm) => {
@@ -50,19 +55,32 @@ class MenuContainer extends Component {
         this.props.oauthGoogle(accessToken)
     }
 
+    resetMessage = () =>{
+        this.props.resetMessage()
+    }
+
+    resetErrorSign = () => {
+        this.props.resetErrorSign()
+    }
+
     logoutUser = () => {
         this.props.logoutUser()
     }
 
     render() {
-        var { menus, userProfile, errorMessage, cart } = this.props;
+        var { menus, userProfile, cart, oauth  } = this.props;
         return (
             <Menu userProfile={userProfile}
+            oauth={oauth}
+            cart = {cart}
+
              onSignIn = {this.onSignIn}
              oauthGoogle = {this.oauthGoogle}
-             errorMessage = {errorMessage}
+             onSignUp ={this.onSignUp}
              logoutUser = {this.logoutUser}
-             cart = {cart}
+             
+             resetMessage={this.resetMessage}
+             resetErrorSign={this.resetErrorSign}
              >
                 { this.showMenu(menus) }
             </Menu>
@@ -95,20 +113,24 @@ class MenuContainer extends Component {
 
 
 const mapStateToProps = (state) => {
+    var { menus, oauth, userProfile, cart} = state
     return {
-        menus : state.menus,
-        isAuthencation : state.oauth.isAuthencated,
-        errorMessage : state.oauth.error,
-        userProfile : state.userProfile,
-        cart : state.cart
+        menus,
+        isAuthencation : oauth.isAuthencated,
+        oauth,
+        userProfile,
+        cart
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchMenu : () => {
-
             dispatch(actions.fetchMenu())
+        },
+
+        onSignUp : (values) => {
+            dispatch(actions.signUp(values))
         },
 
         onSignIn : (dataForm) => {
@@ -129,6 +151,14 @@ const mapDispatchToProps = (dispatch, props) => {
 
         fetchGetCart : () => {
             dispatch(actions.fetchGetCart())
+        },
+
+        resetMessage : () => {
+            dispatch(actions.resetMessage())
+        },
+
+        resetErrorSign: () => {
+            dispatch(actions.resetErrorSign())
         }
     }
 }
