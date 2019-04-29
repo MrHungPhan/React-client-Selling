@@ -19,3 +19,5 @@ export const RESET_ERROR_SIGNIN = "RESET_ERROR_SIGNIN"
 export const ADD_TO_CART = "ADD_TO_CART";
 export const ADD_TO_CART_LOCAL = "ADD_TO_CART_LOCAL"
 export const FECTCH_GET_CART = "FECTCH_GET_CART";
+
+export const GET_DISTRICTS = 'GET_DISTRICTS'

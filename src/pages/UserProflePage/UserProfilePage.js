@@ -59,7 +59,7 @@ class UserProfilePage extends PureComponent {
         var { userProfile } = this.props;
         var { email, name, sex, birthDay } = this.state;
         return <div>
-            <Container>
+            <Container id="userprofile-page">
                 <Row>
                     <Col md="2" className="profile-left">
                         <Sidebar userProfile={userProfile} />

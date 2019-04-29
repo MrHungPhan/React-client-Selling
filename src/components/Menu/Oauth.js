@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
 import './OauthModal.css'
+import { UncontrolledPopover, PopoverHeader, PopoverBody } from 'reactstrap'
 
 import SignInModal from './SignInModal';
 import ThirtOauthModal from './ThirtOauthModal';
@@ -87,20 +88,20 @@ class Oauth extends PureComponent {
         this.props.logoutUser()
     }
 
-    componentDidUpdate(){
-        document.body.addEventListener('click', (e) => {
-            var userElement = document.getElementsByClassName('user-profile-info');
-            var nameUser = document.getElementsByClassName('user-profile-menu');
-            console.log(e.target.parentElement.parentElement);
-            console.log(userElement[0]);
-            if((e.target.parentElement !== userElement[0] && e.target !== nameUser[0])){
-                this.setState({
-                    ...this.state,
-                    isShowProfile : false
-                })
-            }
-        })
-    }
+    // componentDidUpdate(){
+    //     document.body.addEventListener('click', (e) => {
+    //         var userElement = document.getElementsByClassName('user-profile-info');
+    //         var nameUser = document.getElementsByClassName('user-profile-menu');
+    //         console.log(e.target.parentElement.parentElement);
+    //         console.log(userElement[0]);
+    //         if((e.target.parentElement !== userElement[0] && e.target !== nameUser[0])){
+    //             this.setState({
+    //                 ...this.state,
+    //                 isShowProfile : false
+    //             })
+    //         }
+    //     })
+    // }
 
     render() {
         const { userProfile, 
@@ -113,10 +114,17 @@ class Oauth extends PureComponent {
        
         return (
             <div>     {
-                token && <div onClick={this.showUserProfile} className="user-profile-menu">
+                token && <div>
+                     <div id="PopoverLegacy"  className="user-profile-menu">
                         <img className='user-image-menu' src={userProfile.image} />
                         {userProfile.display_name}
-                       { isShowProfile && <UserProfile logoutUser={this.logoutUser} /> }
+                     
+                </div>
+                  <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverLegacy">
+                  <PopoverBody>
+                       <UserProfile logoutUser={this.logoutUser} /> 
+                </PopoverBody>
+                </UncontrolledPopover>
                 </div>
             }
             {

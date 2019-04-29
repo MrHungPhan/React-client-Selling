@@ -135,17 +135,13 @@ span.cart-length {
 }
 
 ul.user-profile-info{
-    position: absolute;
     list-style: none;
     background-color: #fff;
     padding: 0;
     margin: 0;
     width: 180px;
-    left: -25%;
-    top: 44px;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-    border : 1px solid #ddd;
     z-index: 1000;
 }
 
@@ -154,19 +150,9 @@ ul.user-profile-info li{
     padding: .5rem 1rem;
 }
 
-ul.user-profile-info::before{
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: .5rem solid transparent;
-    border-right: .5rem solid transparent;
-    border-bottom: .6rem solid #fff;
-    position: absolute;
-    top : -.6rem;
-    right: 40%;
-}
 
 ul.user-profile-info li:hover{
+    cursor: pointer;
     background: #f1f1f1
 }
 

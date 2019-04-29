@@ -70,12 +70,23 @@ class CatalogPageContainer extends Component {
         }
     }
 
+    filterProducts = (values) => {
+        console.log(values);
+        var { sortName, sortPrice, filterPrice } = values;
+        var { match } = this.props;
+        var path = `${match.url}?${sortName ? `sortName=${sortName}` : ''}
+        
+        &sortPrice=${sortPrice}&filterPrice=${filterPrice}`;
+        console.log(path)
+    }
+
     render() {
         var { productsCatalog, productDetailt } = this.props
         console.log(productsCatalog)
         var { modal } = this.state;
         return (
             <CatalogPage
+              filterProducts={this.filterProducts}
                 slider={productsCatalog.slider ? productsCatalog.slider : ''}
                 path = {productsCatalog.path}
             >

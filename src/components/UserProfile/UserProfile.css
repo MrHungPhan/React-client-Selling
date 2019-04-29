@@ -1,3 +1,8 @@
+#userprofile-page{
+    margin-top: 2em;
+    margin-bottom: 3rem;
+}
+
 .profile-left{
     border-right: 1px solid #eee;
 }
@@ -16,7 +21,7 @@
     color: #666;
     font-size: .9em;
     padding-left: 0;
-    transition: all .3s;
+    transition: font-weight .2s ease-in;
 }
 
 .profile-left li.nav-item a.nav-link.active{

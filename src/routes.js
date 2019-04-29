@@ -6,8 +6,7 @@ import CatalogPageContainer from './containers/CatalogPageContainer';
 import ProductDetailtContainer from './containers/ProductDetailtContainer';
 import CartPageContainer from './containers/CartPageContainer'
 import UserProfileContainer from './containers/UserProfileContainer'
-
-import CartCheckOutPage from './pages/CartCheckOutPage/CartCheckOutPage'
+import CartCheckoutContainer from './containers/CartCheckoutContainer'
 
 function isNameProduct(name){
     var nameArr = name.split('-');
@@ -31,7 +30,7 @@ const routes = [
     {
         path : '/cart/checkout',
         exact : true,
-        main : () => <CartCheckOutPage />
+        main : ({match}) => <CartCheckoutContainer match={match} />
     },
     {
         path : '/user-profile',

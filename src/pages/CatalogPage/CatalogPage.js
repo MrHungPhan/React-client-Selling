@@ -7,11 +7,13 @@ import Filter from '../../components/CatalogPage/Filter';
 
 class CatalogPage extends Component {
     render() {
-        var { slider, path } = this.props
+        var { slider, path, filterProducts } = this.props
         return (
             <div>
                 <SliderCatalog slider={slider} />
-                <Filter path={path}/>
+                <Filter path={path}
+                    filterProducts={filterProducts}
+                />
 
                 <Container >
                     <section id="products-cata">

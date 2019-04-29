@@ -1,8 +1,10 @@
 import { Cookies } from 'react-cookie'
-import lodash from 'lodash'
+import lodash from 'lodash';
+import 'dotenv'
 
 import * as type from '../const/index';
 import callApi from '../utils/apiCaller';
+import apiTransport from '../utils/apitTransport'
 import { types } from 'util';
 
 var cookie = new Cookies();
@@ -248,4 +250,18 @@ export const fetchGetCart = () => {
         }
     }
     
+}
+
+//get Districts
+export const getDistricts = () => {
+    return async dispatch => {
+        const res = await apiTransport('GetDistricts',"POST", {
+            token:"TokenStaging"
+        })
+        console.log(res)
+        dispatch({
+            type : type.GET_DISTRICTS,
+            districts : res.data.data
+        })
+    }
 }
