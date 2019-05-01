@@ -97,6 +97,21 @@
     margin-right: 1em;
 }
 
+.c-checkout-service .location-order{
+    display: flex;
+    margin-bottom: .7em;
+    font-size: .85em;
+}
+
+.c-checkout-service .location-order span{
+    color : green;
+    font-weight: 500
+}
+
+.c-checkout-service .location-from {
+    flex-grow: 2;
+}
+
 /* ///////////////////////////////////////////////////// */
 .checkout-pay-type .form-checkout{
     display: flex;
@@ -235,8 +250,10 @@
 }
 
 .o-item-info{
+    flex-grow: 2;
     display: flex;
     flex-direction: column;
+    align-items: flex-end
 }
 
 .o-item-info .o-img{

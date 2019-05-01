@@ -21,3 +21,6 @@ export const ADD_TO_CART_LOCAL = "ADD_TO_CART_LOCAL"
 export const FECTCH_GET_CART = "FECTCH_GET_CART";
 
 export const GET_DISTRICTS = 'GET_DISTRICTS'
+export const GET_WARDS = 'GET_WARDS'
+export const GET_SERVICES = 'GET_SERVICES'
+export const CHECKOUT_ORDER = 'CHECKOUT_ORDER';

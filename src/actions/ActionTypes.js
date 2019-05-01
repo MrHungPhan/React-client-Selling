@@ -106,6 +106,8 @@ export const signUp = (data) => {
 
 // Sign in Account
 export const signIn = (data) => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    if(cart) data.cart = cart;
     return async dispatch => {
             const res = await callApi('user/signIn', 'POST', data);
             if (res.data.token) {
@@ -130,11 +132,14 @@ export const signIn = (data) => {
 
 // Oauth Google 
 export const oauthGoogle = (accessToken) => {
+    const data = {
+        access_token: accessToken
+    }
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    if(cart) data.cart = cart
     return async dispatch => {
         try{
-            const res = await callApi('user/oauth/google', 'POST', {
-            access_token: accessToken
-        });
+            const res = await callApi('user/oauth/google', 'POST', data );
         if (res.status === 200) {
             cookie.set('token', res.data.token, {
                 maxAge: 60 * 60 * 60 * 24 * 5
@@ -167,6 +172,7 @@ export const getUserProfile = () => {
 export const logOutUser = () => {
     return dispatch => {
         cookie.remove('token');
+        localStorage.removeItem('cart');
         dispatch({
             type : type.LOGOUT_USER,
         });
@@ -252,16 +258,55 @@ export const fetchGetCart = () => {
     
 }
 
-//get Districts
+//get info Order
 export const getDistricts = () => {
     return async dispatch => {
-        const res = await apiTransport('GetDistricts',"POST", {
-            token:"TokenStaging"
+        const res = await callApi('order/getDistricts',"GET")
+      if(res.status === 200){
+          dispatch({
+            type : type.GET_DISTRICTS,
+            districts : res.data
+        })
+      }
+        
+    }
+}
+
+export const getWards = (districtId) =>{
+    return async dispatch=>{
+        const res = await callApi('order/getWards', 'POST', {
+            districtId : parseInt(districtId)
+        })
+
+        if(res.status === 200){
+            dispatch({
+                type : type.GET_WARDS,
+                wards :res.data.Wards
+            })
+        }
+    }
+}
+
+export const getServices = (toDistrictId) => {
+    return async dispatch => {
+        const res = await callApi('order/getServices', 'POST', {
+            toDistrictId : parseInt(toDistrictId)
         })
         console.log(res)
-        dispatch({
-            type : type.GET_DISTRICTS,
-            districts : res.data.data
-        })
+        if(res.status === 200){
+            dispatch({
+                type : type.GET_SERVICES,
+                services : res.data
+            })
+        }
+    }
+}
+
+export const checkoutOrder = (values) =>{
+    return async dispatch =>{
+        const res = await callApi('order/checkoutOrder', 'POST', values);
+        if(res.status === 200){
+            console.log(res)
+        }
     }
 }

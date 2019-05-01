@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withCookies } from 'react-cookie'
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router,  } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import MenuContainer from './containers/MenuContainer'
 import Footer from './components/Footer/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import routes from './routes';
-import Menu from './components/Menu/Menu'
+import Menu from './components/Menu/Menu';
+
 
 
 class App extends Component {
@@ -16,7 +18,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Route render={({ location }) => (
+        <ScrollToTop>
+           <Route render={({ location }) => (
               <div className="App">
               <MenuContainer  />   
               {/* Show Page */}
@@ -32,6 +35,8 @@ class App extends Component {
               <Footer />
           </div>
         )} />
+        </ScrollToTop>
+       
         
       </Router>
     );

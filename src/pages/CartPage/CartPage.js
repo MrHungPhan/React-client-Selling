@@ -61,7 +61,7 @@ class CartPage extends Component {
                                    cart && this.showCart(cart)
                                }
                                {
-                                   !cart && <div className ="empty-cart">Gio hang trong</div>
+                                   !cart && <div className ="empty-cart">Giỏ hàng trống !</div>
                                }
                             </div>
                         </Col>

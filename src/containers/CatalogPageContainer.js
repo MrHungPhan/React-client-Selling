@@ -74,9 +74,7 @@ class CatalogPageContainer extends Component {
         console.log(values);
         var { sortName, sortPrice, filterPrice } = values;
         var { match } = this.props;
-        var path = `${match.url}?${sortName ? `sortName=${sortName}` : ''}
-        
-        &sortPrice=${sortPrice}&filterPrice=${filterPrice}`;
+        var path = `${match.url}?${sortName ? `sortName=${sortName}` : ''}${sortPrice ? `&sortPrice=${sortPrice}` : ''}${filterPrice ? `&filterPrice=${filterPrice}` : ''}`;
         console.log(path)
     }
 
