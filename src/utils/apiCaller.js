@@ -21,7 +21,7 @@ export default function callApi(endpoint, method ='GET', body){
     }else{
         return axios({ // tra ve promise
             method : method,
-            url : `${config.API_URL}/${endpoint}`,
+            url : `${config.API_URL_SERVER}/${endpoint}`,
             data : body
         }).catch( err => {
             console.log(err)
