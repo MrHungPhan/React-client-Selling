@@ -16,6 +16,7 @@ class ProductDetailt extends PureComponent {
 
         this.state = {
             sizes: [],
+            image : '',
             form: {
                 color: null,
                 size: null,
@@ -23,6 +24,24 @@ class ProductDetailt extends PureComponent {
             }
         }
     }
+
+    componentWillReceiveProps(nextProps){
+        const { product } = nextProps;
+        if(product.length > 0){
+             this.setState({
+                image : product[0].image
+            })
+        }
+       
+    }
+
+    changeImage = (img) => {
+        console.log(img)
+        this.setState({
+            image : img
+        })
+    }
+
     showSize = (idColor) => {
         var { product } = this.props;
         if (product.length > 0) {
@@ -66,17 +85,18 @@ class ProductDetailt extends PureComponent {
 
     }
 
-    onChange = (e) => {
+    onChange = async (e) => {
         var target = e.target;
         var name = target.name;
         var value = lodash.isNaN(parseInt(target.value)) ? target.value : parseInt(target.value);
-        this.setState({
+        await this.setState({
             ...this.state,
             form: {
                 ...this.state.form,
                 [name]: value
             }
         })
+        console.log(this.state.form);
 
     }
 
@@ -113,6 +133,7 @@ class ProductDetailt extends PureComponent {
             this.props.addToCart(product)
 
         // reset form data
+        document.getElementById('color').checked = false;
         this.setState({
             sizes : [],
             form : {
@@ -122,6 +143,40 @@ class ProductDetailt extends PureComponent {
                 quantity: 1
             }
         })
+    }
+
+    ///////////////////////////////////////
+    onMouseEnterImage = (e) => {
+        const preview = document.getElementById("preview-img");
+        const img = document.getElementById("p-img-zoom");
+        img.style.transform = "scale(1.6)";
+        console.log(e)
+        if(preview){
+            //    preview.style.display = "block";
+            //  preview.style.background= `url(${this.state.image})`;
+            //  preview.style.backgroundRepeat = "no-repeat"
+            //    const posX = e.nativeEvent.clientX;
+            //   const posY = e.nativeEvent.offsetY;
+            //   console.log(posX, posY)
+            //   preview.style.backgroundPosition = (-posX*2.5)+"px "+(-posY*5.5)+"px";
+            const event = e.nativeEvent;
+            console.log(event.offsetY, event.offsetX, event.pageX, event.pageY)
+        }
+      
+        
+    }
+
+    onMouseLeaveImage = (e) => {
+        const img = document.getElementById("p-img-zoom");
+        img.style.transform = "scale(1)";
+    }
+
+    onMouseMoveImage = (e) => {
+        const img = document.getElementById("p-img-zoom");
+        const event = e.nativeEvent;
+        console.log(event.pageX, event.pageY)
+        console.log(img.offsetHeight, img.offsetWidth, img.offsetLeft, img.offsetTop)
+        img.style.transformOrigin = ((event.pageX -120)/img.offsetWidth)*100 + '%' + ((event.pageY - 120)/img.offsetHeight)*100 + '%';
     }
 
     render() {
@@ -165,45 +220,39 @@ class ProductDetailt extends PureComponent {
         var { product } = this.props;
         var { sizes, quantity, form } = this.state;
 
-        console.log(product);
+        console.log('here - ',product);
         return (
             <div className="product-view">
                 <Row>
                     <Col md="4">
                         <div className="product-d-image">
-                            <div className="p-img">
-                                <img src={product.length > 0 ? product[0].image : ''} />
+                            <div
+                             onMouseEnter={this.onMouseEnterImage}
+                             onMouseLeave={this.onMouseLeaveImage}
+                             onMouseMove={this.onMouseMoveImage}
+                              className="p-img">
+                                <img 
+                                id="p-img-zoom"
+                                
+                                src={product.length > 0 ? this.state.image : ''} />
                             </div>
-                            <div className="p-slider-img">
-
-                            </div>
+                            
                         </div>
                         <div className="product-images-slider">
                             <Slider {...settings}>
-                                <div>
-                                    <h2>1</h2>
-                                </div>
-                                <div>
-                                    <h2>2</h2>
-                                </div>
-                                <div>
-                                    <h2>3</h2>
-                                </div>
-                                <div>
-                                    <h2>4</h2>
-                                </div>
-                                <div>
-                                    <h2>5</h2>
-                                </div>
-                                <div>
-                                    <h2>6</h2>
-                                </div>
-                                <div>
-                                    <h2>7</h2>
-                                </div>
-                                <div>
-                                    <h2>8</h2>
-                                </div>
+                               {
+                                   product[3] && product[3].map(img => (
+                                        <div onClick={e => this.changeImage(img.image)} className="slide-img-pr-detailt" key={img.id}>
+                                            <img alt="" src={img.image} />
+                                        </div>
+                                   ))
+                               }
+
+                            <div className="slide-img-pr-detailt" >
+                                          
+                                        </div>
+                                       
+                               
                             </Slider>
                         </div>
                     </Col>
@@ -219,7 +268,7 @@ class ProductDetailt extends PureComponent {
                                 <Form onSubmit={this.onSubmit}>
 
                                     <FormGroup>
-                                        <span className="frm-title">Mau sac : </span>
+                                        <span className="frm-title">Màu sắc : </span>
                                         <div className="frm-check">
                                             {
                                                 (product.length > 0 && product[1].length > 0) ? product[1].map(color => {
@@ -228,6 +277,7 @@ class ProductDetailt extends PureComponent {
                                                         onClick={() => this.showSize(color.id)}
                                                     >
                                                         <Input
+                                                            id="color"
                                                             type="radio"
                                                             name="color"
                                                             value={color.id}
@@ -241,9 +291,9 @@ class ProductDetailt extends PureComponent {
 
                                         </div>
                                     </FormGroup>
-                                    <div className="message-size"><i>Chon mau sac de hien thi kich thuoc hien co</i></div>
+                                    <div className="message-size"><i>Chọn màu sắc để hiển thị kích thước hiện có</i></div>
                                     <FormGroup>
-                                        <span className="frm-title">Kich thuoc : </span>
+                                        <span className="frm-title">Kích thước : </span>
                                         <div className="frm-check">
                                             {
                                                 sizes.length > 0 ? sizes.map(size => {
@@ -267,7 +317,7 @@ class ProductDetailt extends PureComponent {
                                     </FormGroup>
 
                                     <FormGroup>
-                                        <span className="frm-title">So luong : </span>
+                                        <span className="frm-title">Số lượng : </span>
                                         <div className="frm-quantity">
                                             <button type="button"
                                                 className="q-btn btn-plus"
@@ -289,7 +339,7 @@ class ProductDetailt extends PureComponent {
                                         </div>
                                     </FormGroup>
                                     <div className="add-to-cart">
-                                        <button className="btn-add-cart" type="submit"><div><i className="fas fa-cart-plus"></i>Them vao gio</div>
+                                        <button className="btn-add-cart" type="submit"><div><i className="fas fa-cart-plus"></i>Thêm vào giỏ hàng</div>
                                         </button>
                                         <Link to='/' className="btn-buy-now">
                                             <span>Mua ngay</span>

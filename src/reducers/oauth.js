@@ -6,7 +6,8 @@ var oauth = {
     errorSignin : '',
     errorSignup : '',
     isSignUp : false,
-    message : ''
+    message : '',
+    countUsers : null
 }
 
 const myReducer = (state = oauth, action) => {
@@ -67,6 +68,10 @@ const myReducer = (state = oauth, action) => {
                   errorSignin : "",
                   errorSignup: '',
                     message : ''}
+        case types.COUNT_USER_ONLINE:
+            return {
+                ...state, countUsers : action.count
+            }
         default : return {...state}
     }
 }

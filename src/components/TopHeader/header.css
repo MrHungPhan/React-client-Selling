@@ -1,0 +1,68 @@
+.doc-logo img{
+    width: 130px;
+}
+
+.header{
+    background:#292828
+}
+
+.header .form-search{
+    display: flex;
+    align-items: center;
+}
+
+.header .form-search input{
+    border-radius: 0;
+    outline: none;
+    border: none;
+    padding: 1em 3em;
+    height: 2.8em;
+    width: 25rem;
+    padding-left: 1em;
+    color: #555;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.header .form-search input:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.header .form-search a{
+    text-align: center;
+    color: #fff;
+    height: 2.8em;
+    line-height: 2.8em;
+    border-radius: 0;
+    margin: 0;
+    border: none;
+    background: #ff8d00;
+    width: 4em;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.hot-line {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 500;
+    font-size: .9rem;
+}
+
+
+.search-cata{
+    z-index: 99;
+    font-size: .8em;
+    position: absolute;
+    color: #fff;
+    background: black;
+    right: 10px;
+    padding: .5em 1em;
+    border-radius: 20px;
+}
+
+.header .form-group{
+    position: relative;
+}

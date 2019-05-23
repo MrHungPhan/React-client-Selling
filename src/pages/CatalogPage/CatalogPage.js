@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, Row } from 'reactstrap'
 
 import SliderCatalog from '../../components/CatalogPage/SliderCatalog';
-import Filter from '../../components/CatalogPage/Filter';
+import Title from '../../components/CatalogPage/Title';
 
 class CatalogPage extends Component {
     render() {
@@ -11,8 +11,9 @@ class CatalogPage extends Component {
         return (
             <div>
                 <SliderCatalog slider={slider} />
-                <Filter path={path}
+                <Title path={path}
                     filterProducts={filterProducts}
+                    pathFirst='Trang chủ'
                 />
 
                 <Container >

@@ -16,8 +16,10 @@ class ProductDetailtContainer extends Component {
         return id;
     }
     componentWillMount(){
-        document.body.classList.remove('selling-cart');
         var { match } = this.props;
+        if(match.path === '/:name/:childName/:product' || match.path === '/:name/:product'){
+            document.body.classList.add('selling-cart')
+        }
         var id = null;
         if(match.params.product){
             id = this.getIdFromUrl(match.params.product);
@@ -45,6 +47,7 @@ class ProductDetailtContainer extends Component {
 
     render() {
         var { product } = this.props;
+        console.log(product)
         return (
             <ProductDetailtPage
             product = {product}

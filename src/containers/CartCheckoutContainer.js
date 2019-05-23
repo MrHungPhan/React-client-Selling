@@ -4,8 +4,11 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiTransport from '../utils/apitTransport';
 import * as actions from '../actions/ActionTypes'
+import { Cookies } from 'react-cookie';
 
 import CartCheckoutPage from '../pages/CartCheckOutPage/CartCheckOutPage'
+
+const cookie = new Cookies()
 
 class CartCheckoutContainer extends PureComponent {
 
@@ -34,10 +37,15 @@ class CartCheckoutContainer extends PureComponent {
         this.props.checkoutOrder(values)
     }
 
+    storeInfo = (total, time) => {
+        this.props.storeInfo(total, time)
+    }
+
     render() {
         var { info, cart } = this.props;
-        var { districts, wards, services }= info
-        if(cart.length === 0){
+        var { districts, wards, services, order }= info
+        const token = cookie.get('token');
+        if(cart.length === 0 || !token){
             return <Redirect to ='/cart' />
         }else{
               return <CartCheckoutPage 
@@ -45,10 +53,12 @@ class CartCheckoutContainer extends PureComponent {
                 wards={wards}
                 cart = {cart}
                 services={services}
+                order={order}
 
                 getWards={this.getWards}
                 getServices={this.getServices}
                 onSubmit={this.onSubmit}
+                storeInfo={this.storeInfo}
             />;
         }
       
@@ -83,6 +93,10 @@ const mapDispatchToProps = ( dispatch, props) => {
 
         checkoutOrder : (values) => {
             dispatch(actions.checkoutOrder(values))
+        },
+
+        storeInfo : (total, time) => {
+            dispatch(actions.storeInfo(total, time))
         }
     }
 }

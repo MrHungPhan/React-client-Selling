@@ -7,10 +7,10 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import MenuContainer from './containers/MenuContainer'
 import Footer from './components/Footer/Footer';
+import Header from './components/TopHeader/Header';
 import ScrollToTop from './components/ScrollToTop';
 import routes from './routes';
 import Menu from './components/Menu/Menu';
-
 
 
 class App extends Component {
@@ -19,8 +19,9 @@ class App extends Component {
     return (
       <Router>
         <ScrollToTop>
-           <Route render={({ location }) => (
+           <Route render={({ location, match }) => (
               <div className="App">
+              <Header location={location} match={match}/>
               <MenuContainer  />   
               {/* Show Page */}
               <TransitionGroup>

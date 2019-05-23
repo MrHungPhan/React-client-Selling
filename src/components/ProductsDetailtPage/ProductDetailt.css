@@ -1,5 +1,8 @@
 .product-view{
-    margin-top:3em;
+    background: #fff;
+    padding: 1em;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.24);
+    border-radius: 3px;
 }
 
 .product-d-actions {
@@ -61,7 +64,7 @@
 }
 
 input[name="color"]:checked + img {
-    border : 2px solid #f18020;
+    border : 2px solid #333;
     transform: scale(1.1,1.1)
 }
 
@@ -103,7 +106,7 @@ input[name="color"]:checked + img {
 
 /* /////////////////////////////// */
 input[name="size"]:checked + .item-style {
-    border : 2px solid #f18020;
+    border : 2px solid #333;
     transform: scale(1.1,1.1)
 }
 
@@ -144,7 +147,7 @@ input[name ="quantity"]:focus {
 .p-actions .btn-add-cart{
     text-align: center;
     margin-right: .5rem;
-    background: #f18020;
+    background: #101010;
     color: #fff;
     text-shadow: none;
     padding: 5px 30px 5px;
@@ -177,7 +180,7 @@ input[name ="quantity"]:focus {
     color: #fff;
     font-size: .8em;
     padding: 8px 40px 8px;
-    background-color: tomato;
+    background-color: #101010;
      text-decoration: none;
 }
 
@@ -192,6 +195,11 @@ input[name ="quantity"]:focus {
 /* //////////////////////////////////// */
 .product-text{
     margin-top: 2em;
+    padding: 1em;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.24);
+    margin-bottom: 3em;
 }
 
 .p-actions .message-size{
@@ -199,3 +207,36 @@ input[name ="quantity"]:focus {
     font-size: .9em;
     margin-bottom: .3em;
 }
+
+.product-text .tab-content {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+.product-images-slider .slide-img-pr-detailt{
+    width: 4em !important;
+}
+
+.product-images-slider .slide-img-pr-detailt img{
+    width: 100%;
+    border : 1px solid #ddd;
+    padding: .1rem;
+    border-radius: 3px;
+}
+
+.p-img{
+    overflow: hidden;
+}
+
+.p-img:hover{
+    cursor: zoom-in;
+}
+
+#p-img-zoom{
+    transition: transform .5s ease-out;
+}
+
+.slick-slide{
+    text-align: center
+}
+

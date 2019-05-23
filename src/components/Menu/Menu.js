@@ -39,7 +39,7 @@ export default class Example extends React.PureComponent {
 
     componentDidMount() {
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 0) {
+            if (window.scrollY > 70) {
                 this.setState({
                     ...this.state, isFixedMenu: true
                 })

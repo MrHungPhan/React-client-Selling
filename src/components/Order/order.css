@@ -1,0 +1,132 @@
+.order-history-item {
+    border: 1px solid #ddd;
+}
+
+.order-header{
+    display: flex;
+    background: #efeaea;
+    font-size: .85rem;
+    font-weight: 400;
+    padding: .5em 1em;
+}
+
+.order-header p {
+    margin-bottom: .2rem;
+}
+
+.order-header .order-id{
+    flex-grow: 1
+}
+
+.order-header .order-address{
+    text-align: center;
+    flex-grow: 1;
+    position: relative;
+}
+
+.order-header .order-total{
+    text-align: right;
+    flex-grow: 1
+}
+
+
+.order-body{
+    padding: 1em;
+}
+
+
+td .o-p-img img{
+    width: 5em;
+    height: 5.5em;
+    object-fit: cover;
+    padding: .1em;
+    border: 1px solid #ddd;
+}
+
+td .o-p-color img{
+    width: 1.5em;
+    height: 2em;
+    object-fit: cover;
+    padding: .1em;
+    border: 1px solid #ddd;
+}
+
+.product-order-item thead{
+    border-bottom: 1px solid #ddd;
+}
+
+.product-order-item th{
+    font-size: .9em;
+    font-weight: 500
+}
+
+table .o-p-product{
+    display: flex;
+}
+
+table .o-p-product .o-p-img{
+    margin-right: 1em;
+}
+
+table .o-p-product .o-p-name{
+    font-weight : 500;
+}
+
+table .o-p-product .o-p-color {
+    margin-bottom: .3em;
+}
+
+table .o-p-product .o-p-color span {
+    font-size: .8em;
+}
+
+table .o-p-product .o-p-size{
+    font-size: .8em
+}
+
+table .o-p-price, table .o-p-total{
+    color: red
+}
+
+table .o-p-price,table .o-p-total, table .o-p-quantity{
+    font-size: .9em;
+}
+
+
+.order-add-sub{
+    position: absolute;
+    background: #a8a8e4;
+    width: 200px;
+    padding: 1em;
+    left: 50px;
+    top: 53px;
+    z-index: 99;
+}
+
+.i-de {
+    border: 1px solid #ddd;
+    padding: .5em;
+    border-radius: 4px;
+    font-size: .9em
+}
+
+.i-de-title{
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.i-de-code{
+    font-weight: 500;
+    color: blue
+}
+
+.i-de-left .col-md-3{
+    font-weight: 500;
+}
+.des-status-o{
+    padding: .7em;
+    border-radius: 3px;
+    border: 1px dashed #fdd4a1;
+    color: #f1af5d;
+    margin-right: 1em;
+}

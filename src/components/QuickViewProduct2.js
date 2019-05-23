@@ -7,6 +7,7 @@ import lodash from 'lodash';
 import { reduxForm, Field, formValueSelector, SubmissionError } from "redux-form";
 import { Cookies } from "react-cookie";
 import { connect } from 'react-redux';
+import formatMoney from '../utils/formatMoney'
 
 var cookie = new Cookies();
 
@@ -28,11 +29,6 @@ class QuickViewProduct2 extends PureComponent {
             modal: false,
             sizes: null
         }
-    }
-
-    componentDidMount() {
-        //set default input quantity value == 1
-        this.props.initialize({ quantity: 1 })
     }
 
     componentWillReceiveProps(nextprops) {
@@ -78,7 +74,6 @@ class QuickViewProduct2 extends PureComponent {
     onPlus = () => {
         if (this.props.quantity < 5)
             this.props.change('quantity', this.props.quantity + 1)
-
     }
 
     onMinus = () => {
@@ -142,13 +137,14 @@ class QuickViewProduct2 extends PureComponent {
 
 
     render() {
+        console.log(this.props.initialized)
         var { product, handleSubmit } = this.props;
         var { modal, sizes, quantity } = this.state;
         return (
             <div>
                 <div>
                     <Modal isOpen={modal} toggle={this.toggle} className="modal-product-detailt" >
-                        <ModalHeader toggle={this.toggle}>Chi tiet san pham</ModalHeader>
+                        <ModalHeader toggle={this.toggle}>Chi tiết sản phẩm</ModalHeader>
                         <ModalBody>
                             <Row>
                                 <Col md="5">
@@ -167,13 +163,13 @@ class QuickViewProduct2 extends PureComponent {
                                             <h2>{product.length > 0 ? product[0].name : ''}</h2>
                                         </div>
                                         <div className="p-price">
-                                            <h3>{product.length > 0 ? product[0].price : ''}$</h3>
+                                            <h3>{product.length > 0 ? formatMoney(product[0].price) : ''}</h3>
                                         </div>
                                         <div className="p-actions">
                                             <Form onSubmit={handleSubmit(this.onSubmit)}>
 
                                                 <FormGroup>
-                                                    <span className="frm-title">Mau sac : </span>
+                                                    <span className="frm-title">Màu sắc : </span>
                                                     <div className="frm-check">
                                                         {
                                                             (product.length > 0 && product[1].length > 0) ? product[1].map((color, index) => {
@@ -196,9 +192,9 @@ class QuickViewProduct2 extends PureComponent {
                                                 {
                                                     (product.length !== 0 && product[2].length !== 0) && 
                                                                 <div>
-                                                                <div className="message-size"><i>Chon mau sac de hien thi kich thuoc hien co</i></div>
+                                                                <div className="message-size"><i>Chọn màu sắc để hiển thị khích thước đang còn</i></div>
                                                                     <FormGroup>
-                                                                        <span className="frm-title">Kich thuoc : </span>
+                                                                        <span className="frm-title">Kích thước : </span>
                                                                         <div className="frm-check">
                                                                             {
                                                                                 sizes ? sizes.map(size => {
@@ -210,7 +206,6 @@ class QuickViewProduct2 extends PureComponent {
                                                                                             component="input"
                                                                                             type="radio"
                                                                                             value={size.id.toString()}
-
                                                                                         />
                                                                                         <div className="item-style">
                                                                                             {size.name}
@@ -228,7 +223,7 @@ class QuickViewProduct2 extends PureComponent {
                                                 }
 
                                                 <FormGroup>
-                                                    <span className="frm-title">So luong : </span>
+                                                    <span className="frm-title">Số lượng : </span>
                                                     <div className="frm-quantity">
                                                         <button type="button"
                                                             className="q-btn btn-plus"
@@ -240,7 +235,6 @@ class QuickViewProduct2 extends PureComponent {
                                                             name="quantity"
                                                             component="input"
                                                             type="number"
-
                                                         />
                                                         <button type="button"
                                                             className="q-btn btn-minus"
@@ -251,7 +245,7 @@ class QuickViewProduct2 extends PureComponent {
                                                     </div>
                                                 </FormGroup>
                                                 <div className="add-to-cart">
-                                                    <button className="btn-add-cart" type="submit"><div><i className="fas fa-cart-plus"></i>Them vao gio</div>
+                                                    <button className="btn-add-cart" type="submit"><div><i className="fas fa-cart-plus"></i>Thêm vào giỏ hàng</div>
                                                     </button>
                                                     <Link to='/cart' className="btn-buy-now">
                                                         <span>Mua ngay</span>
@@ -280,14 +274,19 @@ QuickViewProduct2.propTypes = {
 };
 
 QuickViewProduct2 = reduxForm({
-    form: 'productAddCartForm'
+    form: 'productAddCartForm',
+    destroyOnUnmount : false // default redux-form dispath action destroy state, block this action set false
 })(QuickViewProduct2);
 
 const selector = formValueSelector('productAddCartForm');
 
 const mapStateToProps = (state) => {
     return {
-        quantity: selector(state, 'quantity')
+        quantity: selector(state, 'quantity'),
+        initialValues: {  // props of redux form, set initiallize for form
+            color : null,
+            size : null,
+            quantity : 1 }
     }
 }
 

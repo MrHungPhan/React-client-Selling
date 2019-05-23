@@ -1,4 +1,4 @@
-import React, {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import lodash from 'lodash';
@@ -11,7 +11,7 @@ import QuickViewProduct2 from '../components/QuickViewProduct2';
 
 const cookie = new Cookies();
 
-class CatalogPageContainer extends Component {
+class CatalogPageContainer extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,7 +31,7 @@ class CatalogPageContainer extends Component {
     this.props.fetchProductDetailt(id)
     }
 
-    componentDidMount(){
+    componentWillMount(){
         document.body.classList.remove('selling-cart');
         var { match } = this.props;
         if(lodash.size(match.params) === 2){
@@ -39,27 +39,18 @@ class CatalogPageContainer extends Component {
         }else{
              this.props.fetchProductsCatalog(match);
         }
-       
     }
 
-    componentWillReceiveProps(nextProps){
-        
-        if(nextProps.match.params.name !== this.props.match.params.name){
-    
-            this.props.fetchProductsCatalog(nextProps.match);
-        }
-        if(nextProps.match.params.product !== this.props.match.params.product){
-            this.props.fetchProductsCatalogChild(nextProps.match);
-        }
-    }
+    // componentWillReceiveProps(nextProps){
+    //     if(nextProps.match.params.name !== this.props.match.params.name){
+    //         debugger
+    //         this.props.fetchProductsCatalog(nextProps.match);
+    //     }
+    //     if(nextProps.match.params.product !== this.props.match.params.product){
+    //         this.props.fetchProductsCatalogChild(nextProps.match);
+    //     }
+    // }
 
-     shouldComponentUpdate(nextProps, nextState){
-        if(lodash.isEqual(nextProps, this.props) && lodash.isEqual(nextState, this.state)){
-            return false
-        }
-
-        return true
-    }
 
     addToCart = (product) => {
         const token = cookie.get('token');
@@ -72,12 +63,13 @@ class CatalogPageContainer extends Component {
 
     filterProducts = (values) => {
         console.log(values);
-        var { sortName, sortPrice, filterPrice } = values;
+        var { sortBy, sortValue, filterPrice } = values;
         var { match } = this.props;
-        var path = `${match.url}?${sortName ? `sortName=${sortName}` : ''}${sortPrice ? `&sortPrice=${sortPrice}` : ''}${filterPrice ? `&filterPrice=${filterPrice}` : ''}`;
-        console.log(path)
+        var path = `${match.url}?${sortBy ? `sortBy=${sortBy}` : ''}${sortValue ? `&sortValue=${sortValue}` : ''}${filterPrice ? `&filterPrice=${filterPrice}` : ''}`;
+        console.log(path);
+        this.props.filterProducts(path)
     }
-
+    
     render() {
         var { productsCatalog, productDetailt } = this.props
         console.log(productsCatalog)
@@ -151,7 +143,12 @@ const mapDistchToProps = (dispatch, props) => {
         },
         addToCartLocal : (product) => {
             dispatch(actions.addToCartLocal(product))
+        },
+
+        filterProducts : (path) => {
+            dispatch(actions.filterProducts(path))
         }
+
     }
 }
 

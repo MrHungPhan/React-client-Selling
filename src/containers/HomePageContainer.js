@@ -10,6 +10,7 @@ import SessionProducts from '../components/Home/SessionProducts';
 import ProductItem from '../components/Home/ProductItem';
 import QuickViewProduct from '../components/QuickViewProduct';
 import QuickViewProduct2 from '../components/QuickViewProduct2';
+import socket from '../utils/socket';
 
 const cookie = new Cookies()
 
@@ -34,9 +35,11 @@ class HomePageContainer extends Component {
         this.props.fetchProductDetailt(id)
     }
 
+
     componentDidMount(){
         document.body.classList.remove('selling-cart');
         this.props.fetchProductsHome();
+        this.props.getUserOnline();
     }
 
     addToCart = (product) =>{
@@ -50,11 +53,12 @@ class HomePageContainer extends Component {
     }
 
     render() {      
-        var { productsHome, productDetailt } = this.props;
+        var { productsHome, productDetailt, oauth } = this.props;
         var { modal } = this.state;
-
         return (
-            <HomePage> 
+            <HomePage
+                countUsers={oauth.countUsers}
+            > 
                 {/* Get Session Products from Reducers */}
                 {this.showSessionProducts(productsHome)}
                 <QuickViewProduct2 
@@ -83,11 +87,13 @@ class HomePageContainer extends Component {
         var resuilt = [];
         for(var key in productsHome){
              resuilt = resuilt.concat(
-                 <SessionProducts id={key} key={key}>
+                 <SessionProducts 
+                 id={key} key={key}
+                 >
                      {
                          productsHome[key].map((product, index) => {
                              return <ProductItem 
-                             fetchProductDetailt = {this.fetchProductDetailt}
+                                fetchProductDetailt = {this.fetchProductDetailt}
                                 toggle = {this.toggle}
                                 key ={index}
                                 index = {index}
@@ -110,7 +116,8 @@ HomePageContainer.propTypes = {
 const mapStateToProps = (state) => {
     return {
       productsHome : state.productsHomePage,
-      productDetailt : state.productDetailt
+      productDetailt : state.productDetailt,
+      oauth : state.oauth
     }
 }
 
@@ -130,6 +137,10 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         addToCartLocal : (product) => {
             dispatch(actions.addToCartLocal(product))
+        },
+
+        getUserOnline : () => {
+            dispatch(actions.getUserOnline())
         }
     }
 }

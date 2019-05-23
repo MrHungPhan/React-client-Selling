@@ -2,9 +2,6 @@ import React, { PureComponent } from 'react'
 import { Container, Row, Col } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-import Sidebar from '../../components/UserProfile/Sidebar';
-
-
 class UserProfilePage extends PureComponent {
     constructor(props){
         super(props);
@@ -59,12 +56,6 @@ class UserProfilePage extends PureComponent {
         var { userProfile } = this.props;
         var { email, name, sex, birthDay } = this.state;
         return <div>
-            <Container id="userprofile-page">
-                <Row>
-                    <Col md="2" className="profile-left">
-                        <Sidebar userProfile={userProfile} />
-                    </Col>
-                    <Col md="10" className="profile-right" >
                         <p className="pr-title">Thông tin tài khoản</p>
                         <Row className="update-user-info">
                             <Col md="2">
@@ -167,9 +158,7 @@ class UserProfilePage extends PureComponent {
                                 </Form>
                             </Col>
                         </Row>
-                    </Col>
-                </Row>
-            </Container>
+                 
         </div>;
     }
 }

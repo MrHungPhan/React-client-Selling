@@ -16,22 +16,30 @@ ul.sub-menu {
     z-index: 999;
     transition:  all .5s;
     display: none;
-    width: 180px;
     padding: 0;
     position: absolute;
     list-style: none;
     background: #111;
 }
 
+ul.sub-menu>div{
+    display: flex;
+}
+
+ul.sub-menu.sub-not-columns{
+    /* width: 180px; */
+}
+
 li.sub-menu-item{
     position: relative;
+    width: 180px;
 }
 
 li.sub-menu-item a {
     transition: all .5s;
     color: white;
     display: block;
-    padding: .6rem;
+    padding: 1rem;
     font-size: .8rem;
     text-decoration: none;
 }

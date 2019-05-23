@@ -4,8 +4,9 @@ import { Redirect } from 'react-router-dom'
 import { Container, Row, Col, Form, Table } from 'reactstrap'
 import { Field, reduxForm } from 'redux-form';
 import './CartCheckOut.css'
-import formatMoney from '../../utils/formatMoney'
+import  loading from './spinner3.svg'
 
+import formatMoney from '../../utils/formatMoney'
 import OrderItem from '../../components/OrderCheckOut/OrderItem'
 
 const cookie = new Cookies()
@@ -55,9 +56,12 @@ class CartCheckOut extends React.PureComponent {
     constructor(props){
         super(props);
         this.state = {
+            isFetching : false,
             locationTo : '',
             serviceFee : 0,
             total : 0,
+            requiredService : '',
+            requiredPay : ''
         }
     }
 
@@ -71,7 +75,7 @@ class CartCheckOut extends React.PureComponent {
                 })
         }
         this.props.getWards(e.target.value);
-        this.props.getServices(e.target.value)
+        this.props.getServices(e.target.value);
     }
 
     showFeeService = async (e) => {
@@ -82,6 +86,11 @@ class CartCheckOut extends React.PureComponent {
                   await this.setState({
                     serviceFee : item.ServiceFee
                 })
+
+                let totalOrder = this.totalCart(this.props.cart) + item.ServiceFee;
+                debugger
+                let time = `${this.countDayTranport(item.ExpectedDeliveryTime)} ngày`
+                this.props.storeInfo(totalOrder, time)
             }
         }
 
@@ -90,6 +99,8 @@ class CartCheckOut extends React.PureComponent {
                 total : this.totalCart(this.props.cart) + this.state.serviceFee
             })
         }
+
+
 
     }
 
@@ -151,16 +162,49 @@ class CartCheckOut extends React.PureComponent {
         })
     }
 
+    onSubmit = async (values) => {
+        const selectorRadioServier = document.querySelectorAll('input[name="service"]:checked');
+        const selectorRadioPay = document.querySelectorAll('input[name="pay"]:checked');
+        if(selectorRadioServier.length === 0){
+            await this.setState({
+                requiredService : '* Bạn cần chọn dịch vụ vận chuyển'
+            })
+        }else if (selectorRadioPay.length === 0){
+            await this.setState({
+                requiredPay : "* Bạn cần chọn hình thức thanh toán"
+            })
+        }else{
+            this.props.onSubmit(values);
+            this.setState({
+                requiredPay : '',
+                requiredService : ''
+            })
+        }
+
+        await this.setState({
+            ...this.state,
+            isFetching: true
+        })
+
+        console.log(this.state.isFetching);
+        setTimeout(() => {
+            this.setState({
+                ...this.state,
+                isFetching: false
+            })
+        }, 8000);
+        console.log(this.state.isFetching);
+    }
+
     render() {
+        console.log(this.state.requiredService, this.state.requiredPay)
         const token = cookie.get('token')
-        const { districts, wards, services, cart, handleSubmit } = this.props;
+        const { districts, wards, services, cart, order, handleSubmit } = this.props;
+        if(order)
+            return <Redirect to= {`/checkout/success/${order.id}`} />
         return <div>
-            {
-                !token && <Redirect to="/" />
-            }
-            {
-                token && <Container id="cart-checkout-page">
-                    <Form onSubmit={handleSubmit}>
+               <Container id="cart-checkout-page">
+                    <Form onSubmit={handleSubmit(this.onSubmit)}>
                         <Row>
                             <Col md="8">
                                 <div className="c-checkout-left">
@@ -225,6 +269,9 @@ class CartCheckOut extends React.PureComponent {
                                                 <div className="location-from">Giao từ : <span>Nghệ An</span></div>
                                                 <div className="loction-to">Đến : <span>{this.state.locationTo}</span></div>
                                             </div>
+                                            {
+                                                    this.state.requiredService && <div className="require-item">{this.state.requiredService}</div>
+                                             }
                                             <Table bordered>
                                                 <thead>
                                                     <tr>
@@ -244,25 +291,40 @@ class CartCheckOut extends React.PureComponent {
                                     </div>
                                     <div className="checkout-pay-type">
                                         <div className="checkout-title"><i className="fas fa-money-check-alt"></i>Chọn hình thức thanh toán</div>
+                                        <div>
+                                            
+                                        </div>
                                         <div className="form-checkout">
-                                            <label>
-                                                <Field
-                                                    type="radio"
-                                                    name="pay"
-                                                    component="input"
-                                                    value="pay1"
-                                                />
-                                                <span><i className="fas fa-praying-hands"></i>Thanh toán khi nhận hàng</span>
-                                            </label>
-                                            <label>
-                                                <Field
-                                                    type="radio"
-                                                    name="pay"
-                                                    component="input"
-                                                    value="pay2"
-                                                />
-                                                <span className="style-pay"><i className="fab fa-paypal"></i>Thanh toán trực tuyến</span>
-                                            </label>
+                                            {
+                                                this.state.requiredPay && <div className="require-item">{this.state.requiredPay}</div>
+                                            }
+                                            <div className="form-c-content">
+                                                <Row>
+                                                    <Col md="6">
+                                                                <label>
+                                                            <Field
+                                                                type="radio"
+                                                                name="pay"
+                                                                component="input"
+                                                                value="pay1"
+                                                            />
+                                                            <span><i className="fas fa-praying-hands"></i>Thanh toán khi nhận hàng</span>
+                                                        </label>
+                                                    </Col>
+                                                    <Col md="6" className="text-right">
+                                                        <label>
+                                                    <Field
+                                                        type="radio"
+                                                        name="pay"
+                                                        component="input"
+                                                        value="pay2"
+                                                    />
+                                                    <span className="style-pay"><i className="fab fa-paypal"></i>Thanh toán trực tuyến</span>
+                                                </label>
+                                                    </Col>
+                                                </Row>     
+                                            </div>
+                                            
                                         </div>
                                     </div>
 
@@ -292,7 +354,12 @@ class CartCheckOut extends React.PureComponent {
                                                 this.state.total !== 0 ? formatMoney(this.state.total) : this.totalCart(cart)
                                             }</span>
                                         </div>
-                                        <button className="btn-order-checkout" type="submit">Đặt hàng</button>
+                                        <button className="btn-order-checkout" type="submit">
+                                            {
+                                                this.state.isFetching && <img className="loading-signup" src={loading} />
+                                            } 
+                                           Đặt hàng
+                                        </button>
                                         <div className="c-order-note">
                                             <div>Ghi chú</div>
                                             <textarea />
@@ -303,7 +370,6 @@ class CartCheckOut extends React.PureComponent {
                         </Row>
                     </Form>
                 </Container>
-            }
         </div>;
     }
 }

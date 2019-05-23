@@ -113,10 +113,6 @@
 }
 
 /* ///////////////////////////////////////////////////// */
-.checkout-pay-type .form-checkout{
-    display: flex;
-    align-items: center;
-}
 
 .checkout-pay-type label{
     padding: .75rem
@@ -318,6 +314,12 @@
 
 .c-order-note textarea{
     width: 100%;
+}
+
+.require-item {
+    color: red;
+    font-size: .9rem;
+    margin-bottom: 1em
 }
 
 

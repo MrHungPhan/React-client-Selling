@@ -1,0 +1,107 @@
+#checkout-success{
+    padding-top: 3em;
+    padding-bottom: 4em;
+   text-align: center;
+   font-size: .95rem;
+   color: #636161;
+}
+
+#checkout-success .out-s-title h5{
+    font-size: 1.1rem;
+    margin-bottom: 1em;
+}
+
+#checkout-success .out-s-title .icon-success i{
+    font-size: 4em;
+    margin-bottom: .5rem;
+    color: #1be203
+}
+
+#checkout-success .out-s-content{
+    text-align: left;
+    width: 60%;
+    margin: auto;
+    background: #fff;
+    padding: 1.4em;
+    box-shadow: 0px 0 6px 0 #d1d4dc;
+    border-radius: 5px;
+}
+
+#checkout-success .out-s-content p{
+    margin-bottom: 0px;
+}
+
+#checkout-success .o-s-name{
+    padding-bottom: 1em;
+    border-bottom: 1px solid #d1d4dc;
+    margin-bottom: 1em;
+}
+
+#checkout-success .o-s-name h6{
+    color: #333;
+}
+
+#checkout-success .o-s-name h6 span{
+    text-transform: capitalize
+}
+
+#checkout-success .o-s-name>div{
+    font-weight: 500
+}
+
+#checkout-success .o-s-name>p{
+    color: red
+}
+
+#checkout-success .o-s-order p{
+    margin-bottom: .5rem;
+}
+
+#checkout-success .o-s-order p.order-i-content{
+    font-weight: 500
+}
+
+#checkout-success .o-s-order p.o-i-item{
+    color: tomato
+}
+
+#checkout-success .o-s-footer{
+    margin-top: 2rem;
+    display: flex;
+}
+
+#checkout-success .o-s-footer>div{
+    height: 100%;
+    flex-grow: 1;
+    padding: 10px 0
+}
+
+#checkout-success .o-s-footer a{
+    border: 1px solid red;
+    padding: 10px 25px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+#checkout-success .o-s-footer div:first-child{
+    padding-right: 1.3em;
+    text-align: right;
+   
+}
+
+#checkout-success .o-s-footer div:first-child a{
+     border-color : rgb(61, 61, 61);
+     color: rgb(61, 61, 61);
+     font-weight: 500
+}
+
+#checkout-success .o-s-footer div:last-child{
+    padding-left: 1.3em;  
+    text-align: left
+}
+
+#checkout-success .o-s-footer div:last-child a {
+    color: tomato;
+    border-color: tomato;
+    font-weight: 500
+}

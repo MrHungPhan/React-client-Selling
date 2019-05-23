@@ -34,27 +34,27 @@ button.slick-arrow.slick-prev {
 
 #shirt {
     padding-top:500px; 
-    background: url('.././images/t-sh.jpg') center center no-repeat fixed
+    background: url('.././images/shirt.jpg') center center no-repeat fixed;
+    background-size: cover;
 }
 
 #trousers {
     padding-top:500px; 
-    background: url('.././images/tr.jpg') center center no-repeat fixed
+    background: url('.././images/pants.jpg') center center no-repeat fixed;
+    background-size: cover;
 }
 
-#cloak {
+#accessories {
     padding-top:500px; 
-    background: url('.././images/winner.jpg') center center no-repeat fixed
+    background: url('.././images/phukien-bg.jpg') center center no-repeat fixed;
+    background-size: cover;
 }
 
-#winner {
-    padding-top:500px; 
-    background: url('.././images/thu.jpg') center center no-repeat fixed
-}
 
 #shose {
     padding-top:500px; 
-    background: url('.././images/shose.jpg') center center no-repeat fixed
+    background: url('.././images/shose.jpg') center center no-repeat fixed;
+    background-size: cover;
 }
 
 [class*='col-']{
@@ -193,6 +193,7 @@ a.link-pro-item {
 }
 
 .pro-image img {
+    object-fit: cover;
     transform: scale(1, 1);
     transition: all .2s;
     height: 100%;
@@ -342,6 +343,26 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
+
+.count-user-online{
+    color: #14b709;
+    font-size: .9em;
+    position: fixed;
+    bottom: 15px;
+    right: 9px;
+}
+
+.count-user-online::before{
+    box-shadow: 0px 1px 3px 0px #5fe457;
+    top: 7px;
+    height: .7em;
+    content: '';
+    width: .7em;
+    background: #1cce06;
+    position: absolute;
+    left: -15px;
+    border-radius: 50%;
+}
 /* /////////////////////////////////////////////// */
 
 @media (min-width : 576px) {

@@ -89,7 +89,7 @@ class SignInModal extends PureComponent {
                 }
                 <form onSubmit = {handleSubmit(this.onSubmit)}>
                     <fieldset>
-                        <label className="label-sign" htmlFor="email">Nhap Email</label>
+                        <label className="label-sign" htmlFor="email">Nhập Email</label>
                         <Field
                             label="email"
                             name="email"
@@ -101,7 +101,7 @@ class SignInModal extends PureComponent {
                         />
                     </fieldset>
                     <fieldset>
-                        <label className="label-sign" htmlFor="password">Mat khau</label>
+                        <label className="label-sign" htmlFor="password">Mật khẩu</label>
                         <Field
                             label="password"
                             name="password"

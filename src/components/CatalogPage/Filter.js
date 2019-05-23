@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Filter.css'
-import { Container, Row, Col } from 'reactstrap';
 
 class Filter extends Component {
     constructor(props){
         super(props)
 
         this.state ={
-            sortName : '',
-            sortPrice : '',
+            sortProducts : '',
             filterPrice : ''
         }
     }
@@ -21,75 +18,69 @@ class Filter extends Component {
         await this.setState({
             [name] : value
         })
-        this.props.filterProducts(this.state)
+
+        console.log(this.state.sort)
+        const { sortProducts, filterPrice } = this.state;
+        if(sortProducts){
+             const sortArr = sortProducts.split('_');
+            this.props.filterProducts({
+                sortBy : sortArr[0],
+                sortValue : parseInt(sortArr[1]),
+                filterPrice 
+            })      
+        }else{
+            this.props.filterProducts({
+                sortBy : '',
+                sortValue : '',
+                filterPrice 
+            })   
+        }
+       
+       
     }
 
     render() {
-        var { path } = this.props;
-        var { sortName, sortPrice, filterPrice } = this.state
+        var { sortProducts, filterPrice } = this.state
         return (
-            <div>
-                <Container>
-                    <div className="catalog-title">
-                       
-                            <div className ="path-cata">
-                                Trang chủ / {path}
-                            </div>
-                     
-                      
-                            <div className="filter">
-                                <div className="fiter-title">
-                                    <span>Sắp xếp theo</span>
-                                </div>
-                                <ul className="filter-content">
-                                    <li className="filter-item">
-                                        <select 
-                                        name="sortName"
-                                        id=""
-                                        onChange={this.onChange}
-                                        value={sortName}
-                                        >
-                                            <option value="">Tên</option>
-                                            <option value="0">Từ A-> Z</option>
-                                            <option value="1">Từ Z-> A</option>
-                                        </select>
-                                    </li>
-                                    <li className="filter-item">
-                                        <select name="sortPrice"
-                                         id=""
-                                         onChange={this.onChange}
-                                         value={sortPrice}
-                                         >
-                                            <option value="">Giá</option>
-                                            <option value="0">Từ cao -> thấp</option>
-                                            <option value="1">Từ thấp -> cao</option>
-                                        </select>
-                                    </li>
-                                   
-                                </ul>
-                                <div className="fiter-title">
-                                    <span>Lọc</span>
-                                </div>
-                                <ul className="filter-content">
-                                    <li className="filter-item">
-                                        <select name="filterPrice"
-                                         id=""
-                                         onChange={this.onChange}
-                                         value={filterPrice}
-                                         >
-                                            <option value="all">Tất cả</option>
-                                            <option value="<200000">Dưới 200.000đ</option>
-                                            <option value="200000>400000">Từ 200.000đ -> 400.000đ</option>
-                                            <option value="400000>600000">Từ 400.000đ-> 600.000đ</option>
-                                            <option value=">600000">Trên 600.000đ</option>
-                                        </select>
-                                    </li>
-                                   
-                                </ul>
-                            </div>
-                      
-                    </div>
-                </Container>
+            <div className="filter">
+                <div className="fiter-title">
+                    <span>Sắp xếp theo</span>
+                </div>
+                <ul className="filter-content">
+                    <li className="filter-item">
+                        <select 
+                        name="sortProducts"
+                        id=""
+                        onChange={this.onChange}
+                        value={sortProducts}
+                        >
+                            <option value="">Mặc định</option>
+                            <option value="name_1">Tên từ A -> Z</option>
+                            <option value="name_-1">Tên từ Z -> A</option>
+                            <option value="price_1">Giá từ thấp -> cao</option>
+                            <option value="price_-1">Giá từ cao -> thấp</option>
+                        </select>
+                    </li>
+                </ul>
+                <div className="fiter-title">
+                    <span>Lọc</span>
+                </div>
+                <ul className="filter-content">
+                    <li className="filter-item">
+                        <select name="filterPrice"
+                            id=""
+                            onChange={this.onChange}
+                            value={filterPrice}
+                            >
+                            <option value="all">Tất cả</option>
+                            <option value="0>200000">Dưới 200.000đ</option>
+                            <option value="200000>400000">Từ 200.000đ -> 400.000đ</option>
+                            <option value="400000>600000">Từ 400.000đ-> 600.000đ</option>
+                            <option value="600000">Trên 600.000đ</option>
+                        </select>
+                    </li>
+                    
+                </ul>
             </div>
         );
     }

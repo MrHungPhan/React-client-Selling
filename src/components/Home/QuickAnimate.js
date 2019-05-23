@@ -4,27 +4,22 @@ import {   scroller } from 'react-scroll'
 const quick = [
     {
         id : "shirt",
-        name : "Ao nam moi",
+        name : "Áo nam mới",
         src :  "images/i-sh.png"
     },
     {
         id : "trousers",
-        name : "Quan nam moi",
+        name : "Quần nam mới",
         src :  "images/trousers.png"
     },
     {
-        id : "cloak",
-        name : "Mang to",
-        src :  "images/i-mangto.png"
-    },
-    {
-        id : "winner",
-        name : "Ao thun - Ao len",
-        src :  "images/ithudong.png"
+        id : "accessories",
+        name : "Phụ kiện",
+        src :  "images/phukien-icon.png"
     },
     {
         id : "shose",
-        name : "Giay nam",
+        name : "Giày nam",
         src :  "images/ishose.png"
     }
 ]

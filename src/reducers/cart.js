@@ -11,6 +11,14 @@ const myReducer = (state = cart, action)=> {
             return [...action.cart];
         case(types.ADD_TO_CART_LOCAL):
            return [...action.cart]
+        case(types.DELETE_CART_LOCAL):
+            return [...action.cart]
+        case(types.UPDATE_CART_LOCAL):
+            return [...action.cart]
+        case(types.DELETE_CART):
+            return [...action.cart]
+        case(types.UPDATE_CART):
+            return [...action.cart]
         default : return [...state]
     }
 }

@@ -24,7 +24,7 @@ class FormOrder extends React.PureComponent {
                 }
                 
                 {
-                     !lodash.isEqual(size, {}) ? <div className="o-item o-size">
+                     size && !lodash.isEqual(size, {}) ? <div className="o-item o-size">
                      <span>Kích thước</span>
                      <div>{size.name}</div>
                      </div> : ''

@@ -3,11 +3,54 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap'
 import lodash from 'lodash'
 import formatMoney from '../../utils/formatMoney';
+import to_slug from '../../utils/convertLink';
+import { Link } from 'react-router-dom'
 
 class CartItem extends Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            quantity : 0
+        }
+    }
+
+    componentDidMount(){
+        this.setState({
+            quantity : this.props.product.quantity
+        })
+    }
+
+    onMinus = async (product) => {
+        if(this.state.quantity > 1){
+            await this.setState({
+            quantity : this.state.quantity - 1
+             })
+        }
+        this.props.updateCart({
+            productItem : product,
+            quantity: this.state.quantity
+        });
+    }
+
+    onPlus = async (product) => {
+        if(this.state.quantity < 10){
+             await  this.setState({
+            quantity : this.state.quantity + 1
+        })
+        }
+        this.props.updateCart({
+            productItem : product,
+            quantity: this.state.quantity
+        });
+    }
+
     onChange = () => {
 
+    }
+
+    deteleCart = (product) => {
+        this.props.deteleCart(product)
     }
 
     render() {
@@ -15,6 +58,7 @@ class CartItem extends Component {
         var productInfo = product.product;
         var color = product.color;
         var size = product.size
+        const to = to_slug(productInfo.name)+'-'+productInfo.id
         return (
                 <div className="c-list-item">
                     <Row>
@@ -23,7 +67,7 @@ class CartItem extends Component {
                         </Col>
                         <Col md='10' className="c-info">
                             <div className="c-info-name">
-                               {productInfo.name}
+                               <Link to={to}>{productInfo.name}</Link>
                     </div>
                             <div className='c-info-style'>
                                 <div className='c-style c-color'>
@@ -33,7 +77,7 @@ class CartItem extends Component {
                                 </div>
                                 <div className='c-style c-size'>
                                 {
-                                      !lodash.isEqual(size, {}) ? <span>{size.name}</span> : ''
+                                     size && !lodash.isEqual(size, {}) ? <span>{size.name}</span> : ''
                                 }
                                     
                                 </div>
@@ -41,15 +85,20 @@ class CartItem extends Component {
                                    {formatMoney(productInfo.price)}
                              </div>
                                 <div className='c-style c-quantity'>
-                                    <button className='c-btn c-plus'>+</button>
+                                    <button 
+                                    onClick={() => this.onPlus(product)}
+                                    className='c-btn c-plus'>+</button>
                                     <input type="number" 
-                                    name='c-quantity'
-                                     onChange={this.onChange}
-                                    value={product.quantity} />
-                                    <button className='c-btn c-minus'>-</button>
+                                        name='c-quantity'
+                                        onChange={this.onChange}
+                                        value={this.state.quantity} />
+                                    <button 
+                                        onClick={() => this.onMinus(product)}
+                                        className='c-btn c-minus'>-</button>
                                 </div>
                                 <div className="c-style c-delete-item">
-                                    <span><i className="far fa-trash-alt"></i></span>
+                                    <span><i onClick={() => this.deteleCart(product)} 
+                                    className="far fa-trash-alt"></i></span>
                                 </div>
                             </div>
                         </Col>

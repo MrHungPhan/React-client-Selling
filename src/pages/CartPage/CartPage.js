@@ -25,6 +25,9 @@ class CartPage extends Component {
             return <CartItem 
                 key = {index}
                 product ={product}
+
+                updateCart={this.props.updateCart}
+                deteleCart={this.props.deteleCart}
             />
         })
     }
@@ -79,7 +82,7 @@ class CartPage extends Component {
 
                                 </div>
                                 <Link to='/cart/checkout'
-                                    disable={true}
+                                    disable="true"
                                  className={classnames('btn btn-danger cart-check-out',
                                   {'point-disable': !token || cart.length === 0})}>
                                  {!token ? "Đăng nhập để thanh toán" : "Tiến hành thanh toán"}

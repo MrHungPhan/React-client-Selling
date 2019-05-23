@@ -6,7 +6,14 @@ import CatalogPageContainer from './containers/CatalogPageContainer';
 import ProductDetailtContainer from './containers/ProductDetailtContainer';
 import CartPageContainer from './containers/CartPageContainer'
 import UserProfileContainer from './containers/UserProfileContainer'
-import CartCheckoutContainer from './containers/CartCheckoutContainer'
+import CartCheckoutContainer from './containers/CartCheckoutContainer';
+import CheckoutSuccessPage from './pages/CheckoutSuccess/CheckoutSuccessPage'
+import SearchContainer from './containers/SearchContainer'
+
+import NewPage from './pages/NewPage';
+import ContactPage from './pages/ContactPage';
+import Index from './pages/UserProflePage/index';
+
 
 function isNameProduct(name){
     var nameArr = name.split('-');
@@ -28,14 +35,39 @@ const routes = [
         main : ({match}) => <CartPageContainer match = {match}/>
     },
     {
+        path : '/tin-tuc',
+        exact : true,
+        main : () => <NewPage />
+    },
+    {
+        path : '/lien-he',
+        exact : true,
+        main : () => <ContactPage />
+    },
+    {
         path : '/cart/checkout',
         exact : true,
         main : ({match}) => <CartCheckoutContainer match={match} />
     },
     {
+        path : '/search',
+        exact: true,
+        main : ({ match, location }) => <SearchContainer match={match} location={location} />
+    },
+    {
+        path : '/checkout/success/:orderId',
+        exact : true,
+        main : ({ match }) => <CheckoutSuccessPage match={match} />
+    },
+    {
         path : '/user-profile',
         exact : true,
-        main : () => <UserProfileContainer />
+        main : () => <Index />
+    },
+    {
+        path : '/order',
+        exact : true,
+        main : () => <Index />
     },
     {
         path : '/:name',

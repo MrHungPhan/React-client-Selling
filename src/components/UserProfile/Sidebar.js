@@ -8,9 +8,10 @@ class SidebarUser extends PureComponent {
     state = {}
     render() {
         var { userProfile } = this.props;
+        console.log(userProfile)
         return <div>
             <Nav vertical>
-                 <NavItem className="sidebar-user">
+                 <NavItem className="sidebar-user">               
                     <img className="s-user-img" src={userProfile.image} />
                     <p className="s-user-name">{userProfile.display_name}</p>
                 </NavItem>

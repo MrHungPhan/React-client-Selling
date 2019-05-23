@@ -53,3 +53,7 @@ ul.filter-content {
     flex-direction: row;
     padding: 0;
 }
+
+.catalog-title{
+    margin-top: 1em;
+}
