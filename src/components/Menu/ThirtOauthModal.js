@@ -42,6 +42,8 @@ class ThirtOauthModal extends PureComponent {
 
     responseFacebook = (response) => {
         console.log(response);
+        this.props.oauthFacebook(response.accessToken);
+        this.toggleOauth();
     }
 
     render() {

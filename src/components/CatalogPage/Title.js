@@ -13,7 +13,7 @@ class Title extends React.PureComponent {
         <Container>
             <div className="catalog-title"> 
                 <Path pathFirst={pathFirst} path={path}/>
-                <Filter filterProducts={filterProducts}/>
+                <Filter  filterProducts={filterProducts}/>
             </div>
         </Container>
         </div>;

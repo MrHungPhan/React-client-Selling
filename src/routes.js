@@ -8,9 +8,10 @@ import CartPageContainer from './containers/CartPageContainer'
 import UserProfileContainer from './containers/UserProfileContainer'
 import CartCheckoutContainer from './containers/CartCheckoutContainer';
 import CheckoutSuccessPage from './pages/CheckoutSuccess/CheckoutSuccessPage'
-import SearchContainer from './containers/SearchContainer'
+import SearchContainer from './containers/SearchContainer';
+import NewsContainer from './containers/NewsContainer';
+import NewsDetailtContainer from './containers/NewsDetailtContainer'
 
-import NewPage from './pages/NewPage';
 import ContactPage from './pages/ContactPage';
 import Index from './pages/UserProflePage/index';
 
@@ -37,7 +38,12 @@ const routes = [
     {
         path : '/tin-tuc',
         exact : true,
-        main : () => <NewPage />
+        main : () => <NewsContainer />
+    },
+    {
+        path: '/tin-tuc/:id',
+        exact : true,
+        main: ({match}) => <NewsDetailtContainer match={match} />
     },
     {
         path : '/lien-he',

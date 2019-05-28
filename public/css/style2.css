@@ -33,26 +33,26 @@ button.slick-arrow.slick-prev {
 
 
 #shirt {
-    padding-top:500px; 
+    padding-top:400px; 
     background: url('.././images/shirt.jpg') center center no-repeat fixed;
     background-size: cover;
 }
 
 #trousers {
-    padding-top:500px; 
+    padding-top:400px; 
     background: url('.././images/pants.jpg') center center no-repeat fixed;
     background-size: cover;
 }
 
 #accessories {
-    padding-top:500px; 
+    padding-top:400px; 
     background: url('.././images/phukien-bg.jpg') center center no-repeat fixed;
     background-size: cover;
 }
 
 
 #shose {
-    padding-top:500px; 
+    padding-top:400px; 
     background: url('.././images/shose.jpg') center center no-repeat fixed;
     background-size: cover;
 }

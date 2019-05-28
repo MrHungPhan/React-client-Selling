@@ -1,0 +1,25 @@
+.news-detailt{
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+.news-detailt h4{
+    margin-bottom: .5em;
+}
+
+.news-detailt .time-news{
+    font-size: .9em;
+    color: #b3b3b3;
+    margin-bottom: 2em;
+}
+
+.news-detailt .sumary-news{
+    font-weight: 500;
+    margin-bottom: 1em;
+}
+
+.news-detailt .auth-news{
+    text-align: right;
+    font-weight: 500;
+    margin-top: 1em;
+    font-size: 1.1em;
+}

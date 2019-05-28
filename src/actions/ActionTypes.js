@@ -46,18 +46,18 @@ export const onStoreProductsHome = (productsHome) => {
 }
 
 // get Products Catalogs
-export const fetchProductsCatalogPage = (match) => {
+export const fetchProductsCatalogPage = (match, page) => {
     return async dispatch => {
-        const res = await callApi(`catapage/${match.params.name}`, "GET", null)
+        const res = await callApi(`catapage/${match.params.name}?page=${page}`, "GET", null)
         if(res.status == 200){
             dispatch(onStoreProductsCatalog(res.data))
         }    
     }
 }
 
-export const fetchProductsCatalogChildPage = (match) => {
+export const fetchProductsCatalogChildPage = (match, page) => {
     return async dispatch => {
-        const res = await callApi(`catapage/${match.params.name}/${match.params.product}`, "GET", null)
+        const res = await callApi(`catapage/${match.params.name}/${match.params.product}?page=${page}`, "GET", null)
         dispatch(onStoreProductsCatalog(res.data))
     }
 }
@@ -162,6 +162,32 @@ export const oauthGoogle = (accessToken) => {
 
             dispatch({
                 type: type.OAUTH_GOOGLE,
+                token: res.data.token
+            })
+
+        }
+        }catch(error){
+            console.log(error)
+        }  
+    }
+}
+
+export const oauthFacebook = (accessToken) => {
+    const data = {
+        access_token: accessToken
+    }
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    if(cart) data.cart = cart
+    return async dispatch => {
+        try{
+            const res = await callApi('user/oauth/google', 'POST', data );
+        if (res.status === 200) {
+            cookie.set('token', res.data.token, {
+                maxAge: 60 * 60 * 60 * 24 * 5
+            });
+
+            dispatch({
+                type: type.OAUTH_FACEBOOK,
                 token: res.data.token
             })
 
@@ -464,5 +490,30 @@ export const getOrderHistory = () => {
                 count :data
            })
        })
+    }
+}
+
+///////////////////// POST //////////////////////////
+export const getPosts = () => {
+    return async dispatch => {
+        const res = await callApi('post/getPosts', 'GET');
+        if(res.status === 200){
+            dispatch({
+                type : type.GET_POST,
+                data: res.data
+            })
+        }
+    }
+}
+
+export const getPostDetailt = (id) => {
+    return async dispatch => {
+        const res = await callApi(`post/${id}`, 'GET');
+        if(res.status === 200){
+            dispatch({
+                type: type.GET_POST_DETAILT,
+                data : res.data
+            })
+        }
     }
 }

@@ -15,41 +15,68 @@ class CatalogPageContainer extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-          modal: false
+          modal: false,
+
+          page : 1,
+          hasMore : true
         };
     
         this.toggle = this.toggle.bind(this);
       }
     
     toggle() {
-    this.setState({
-        modal: !this.state.modal
-    });
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
     fetchProductDetailt = (id) => {
-    this.props.fetchProductDetailt(id)
+         this.props.fetchProductDetailt(id)
+    }
+
+    loadMore = async () => {
+        await this.setState({
+            page: this.state.page + 1
+        })      
+        document.body.classList.remove('selling-cart');
+        var { match } = this.props;
+        var { page } = this.state;
+        if(lodash.size(match.params) === 2){
+            this.props.fetchProductsCatalogChild(match, page)
+        }else{
+             this.props.fetchProductsCatalog(match, page);
+        }
     }
 
     componentWillMount(){
         document.body.classList.remove('selling-cart');
         var { match } = this.props;
+        var { page } = this.state;
         if(lodash.size(match.params) === 2){
-            this.props.fetchProductsCatalogChild(match)
+            this.props.fetchProductsCatalogChild(match, page)
         }else{
-             this.props.fetchProductsCatalog(match);
+             this.props.fetchProductsCatalog(match, page);
         }
     }
 
-    // componentWillReceiveProps(nextProps){
-    //     if(nextProps.match.params.name !== this.props.match.params.name){
-    //         debugger
-    //         this.props.fetchProductsCatalog(nextProps.match);
-    //     }
-    //     if(nextProps.match.params.product !== this.props.match.params.product){
-    //         this.props.fetchProductsCatalogChild(nextProps.match);
-    //     }
-    // }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.productsCatalog.pageTotal){
+            console.log(nextProps.productsCatalog.pageTotal,this.state.page )
+           if(nextProps.productsCatalog.pageTotal === this.state.page){
+               this.setState({
+                   hasMore: false
+               })
+           } 
+        }
+
+        // if(nextProps.match.params.name !== this.props.match.params.name){
+        //     debugger
+        //     this.props.fetchProductsCatalog(nextProps.match);
+        // }
+        // if(nextProps.match.params.product !== this.props.match.params.product){
+        //     this.props.fetchProductsCatalogChild(nextProps.match);
+        // }
+    }
 
 
     addToCart = (product) => {
@@ -65,7 +92,8 @@ class CatalogPageContainer extends PureComponent {
         console.log(values);
         var { sortBy, sortValue, filterPrice } = values;
         var { match } = this.props;
-        var path = `${match.url}?${sortBy ? `sortBy=${sortBy}` : ''}${sortValue ? `&sortValue=${sortValue}` : ''}${filterPrice ? `&filterPrice=${filterPrice}` : ''}`;
+        var { page } = this.state;  
+        var path = `${match.url}?page=${page}&${sortBy ? `sortBy=${sortBy}` : ''}${sortValue ? `&sortValue=${sortValue}` : ''}${filterPrice ? `&filterPrice=${filterPrice}` : ''}`;
         console.log(path);
         this.props.filterProducts(path)
     }
@@ -73,12 +101,15 @@ class CatalogPageContainer extends PureComponent {
     render() {
         var { productsCatalog, productDetailt } = this.props
         console.log(productsCatalog)
-        var { modal } = this.state;
+        var { modal, hasMore } = this.state;
         return (
             <CatalogPage
               filterProducts={this.filterProducts}
                 slider={productsCatalog.slider ? productsCatalog.slider : ''}
                 path = {productsCatalog.path}
+
+                loadMore={this.loadMore}
+                hasMore={hasMore}
             >
                { this.showProducts(productsCatalog) }
                <QuickViewProduct2 
@@ -126,13 +157,13 @@ const mapStateToProps = (state) => {
 
 const mapDistchToProps = (dispatch, props) => {
     return {
-        fetchProductsCatalog : (match) => {
+        fetchProductsCatalog : (match, page) => {
     
-            dispatch(actions.fetchProductsCatalogPage(match))
+            dispatch(actions.fetchProductsCatalogPage(match, page))
         },
-        fetchProductsCatalogChild : (match) => {
+        fetchProductsCatalogChild : (match, page) => {
     
-            dispatch(actions.fetchProductsCatalogChildPage(match))
+            dispatch(actions.fetchProductsCatalogChildPage(match, page))
         },
         fetchProductDetailt : (id) => {
             dispatch(actions.fetchProductDetailt(id));

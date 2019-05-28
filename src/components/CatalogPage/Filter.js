@@ -26,7 +26,7 @@ class Filter extends Component {
             this.props.filterProducts({
                 sortBy : sortArr[0],
                 sortValue : parseInt(sortArr[1]),
-                filterPrice 
+                filterPrice
             })      
         }else{
             this.props.filterProducts({
@@ -40,7 +40,7 @@ class Filter extends Component {
     }
 
     render() {
-        var { sortProducts, filterPrice } = this.state
+        var { sortProducts, filterPrice } = this.state;
         return (
             <div className="filter">
                 <div className="fiter-title">

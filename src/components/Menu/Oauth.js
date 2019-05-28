@@ -108,6 +108,7 @@ class Oauth extends PureComponent {
                 onSignIn,
                 onSignUp,
                 oauthGoogle,
+                oauthFacebook,
                 oauth } = this.props;
         const { isShowProfile } =this.state
         const token = cookie.get('token')
@@ -141,6 +142,7 @@ class Oauth extends PureComponent {
                     toggleSignUp={this.toggleSignUp}
 
                      oauthGoogle = {oauthGoogle}
+                     oauthFacebook={oauthFacebook}
                     />    
 
                     {/* Sign In */}

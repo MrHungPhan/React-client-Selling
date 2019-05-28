@@ -22,18 +22,6 @@ class Footer extends React.PureComponent {
                                 <li className="f-list-item">88 Đình Phúc, Cầu Giấy</li>
                                 <li className="f-list-item">12 Ưng Hoàng, Hà Đông</li>
                                 <li className="f-list-item">01 Minh Khai, Long Biên</li>
-                                <li className="f-list-item">123 Trương Thế Vinh, Hai Bà Trưng</li>
-                                <li className="f-list-item">65 XUân Thủy, Opening Soon</li>
-                                <li className="f-list-item">90 Hà Huy, Láng</li>
-                            </ul>
-                            <h6>Chi Nhánh Tỉnh</h6>
-                            <ul className="footer-list">
-                                <li className="f-list-item">234 Quang Trung, Hải Phòng</li>
-                                <li className="f-list-item">88 Hoàng THị Loan,Vinh, Nghệ An</li>
-                                <li className="f-list-item">12 Trần Phú, TP Hồ Chí Minh</li>
-                                <li className="f-list-item">01 Lê Duẩn, Bắc Giangn</li>
-                                <li className="f-list-item">123 Bạch Liêu, Đà Nẵng</li>
-                                <li className="f-list-item">65 Khánh Phùng, Huế</li>
                             </ul>
                         </div>
                     </Col>
@@ -44,9 +32,7 @@ class Footer extends React.PureComponent {
                                 <li className="f-list-item">
                                     <Link to="/">Fanpage cộng đồng MenShop</Link>
                                 </li>
-                                <li className="f-list-item">
-                                    <Link to="/">Bài baó về MenShop</Link>
-                                </li>
+                              
                                 <li className="f-list-item">
                                     <Link to="/">Chính sách bảo mật</Link>
                                 </li>
@@ -69,21 +55,7 @@ class Footer extends React.PureComponent {
                     </Col>
                     <Col md="4">
                         <div className="footer-col">
-                            <h5>Đăng kí nhận thông báo</h5>
-                            <h6>Đăng kí nhận thông tin khuyến mãi và cập nhật
-                                sản phẩm mới từ MenShop
-                            </h6>
-                            <Form inline>
-
-                                <FormGroup>
-                                    <Label for="examplePassword" hidden>Password</Label>
-                                    <Input type="password" name="password" id="examplePassword" placeholder="Nhập Email" />
-                                </FormGroup>
-                                {' '}
-                                <Button>Submit</Button>
-
-                            </Form>
-                            <div className="mail-contact">Email liên hệ : menshop789@gmail.com</div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.942680656857!2d105.69499921455396!3d18.666567969565428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3139cdd192714e55%3A0xf85248138294dd29!2zVsO1IFRo4buLIFPDoXUsIFRwLiBWaW5oLCBOZ2jhu4cgQW4sIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1558837145779!5m2!1svi!2s" height="100%" frameborder="0" style={{border:0}} allowfullscreen></iframe>
                         </div>
                     </Col>
                 </Row>

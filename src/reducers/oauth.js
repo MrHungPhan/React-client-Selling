@@ -38,13 +38,23 @@ const myReducer = (state = oauth, action) => {
                 }
         case types.OAUTH_GOOGLE : 
             return {...state,
-                 isAuthencated : true, 
+                 isAuthencated : true,
                  isSignUp: false,
                  token : action.token,
                  errorSignin : "",
                  errorSignup: '',
                   message : ''}
-        case types.OAUTH_ERROR : 
+        case types.OAUTH_FACEBOOK:
+            return {
+                ...state,
+                isAuthencated: true,
+                isSignUp:false,
+                token : action.token,
+                errorSignin: '',
+                errorSignup: '',
+                message : ''
+            }
+        case types.OAUTH_ERROR: 
             return {...state,
                 isAuthencated: false,
                 token : '',

@@ -9,7 +9,7 @@ export default function callApi(endpoint, method ='GET', body){
     if(token){
       return axios({ // tra ve promise
         method : method,
-        url : `${config.API_URL_SERVER}/${endpoint}`,
+        url : `${config.API_URL}/${endpoint}`,
         headers : {
             'authorization' : token
         },
@@ -21,7 +21,7 @@ export default function callApi(endpoint, method ='GET', body){
     }else{
         return axios({ // tra ve promise
             method : method,
-            url : `${config.API_URL_SERVER}/${endpoint}`,
+            url : `${config.API_URL}/${endpoint}`,
             data : body
         }).catch( err => {
             console.log(err)

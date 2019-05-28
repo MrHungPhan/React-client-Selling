@@ -9,6 +9,7 @@ function change_alias(alias) {
     str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
     str = str.replace(/đ/g,"d");
     str = str.replace(/ + /g," ");
+    str = str.replace('?','')
     str = str.trim(); 
     var strArr = str.split(' ');
     str = strArr.join('-');

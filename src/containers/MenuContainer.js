@@ -55,6 +55,10 @@ class MenuContainer extends Component {
         this.props.oauthGoogle(accessToken)
     }
 
+    oauthFacebook = (accessToken) => {
+        this.props.oauthFacebook(accessToken)
+    }
+
     resetMessage = () =>{
         this.props.resetMessage()
     }
@@ -139,6 +143,10 @@ const mapDispatchToProps = (dispatch, props) => {
 
         oauthGoogle : (accessToken) => {
             dispatch(actions.oauthGoogle(accessToken))
+        },
+
+        oauthFacebook : (accessToken) => {
+            dispatch(actions.oauthFacebook(accessToken))
         },
 
         getUserProfile : () => {

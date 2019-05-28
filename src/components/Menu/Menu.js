@@ -64,6 +64,7 @@ export default class Example extends React.PureComponent {
         var { cart,
             userProfile,
             oauthGoogle,
+            oauthFacebook,
             onSignIn,
             onSignUp,
             logoutUser,
@@ -86,6 +87,7 @@ export default class Example extends React.PureComponent {
                             onSignIn={onSignIn}
                             onSignUp={onSignUp}
                             oauthGoogle={oauthGoogle}
+                            oauthFacebook={oauthFacebook}
 
                             userProfile={userProfile}   
                             logoutUser={logoutUser}

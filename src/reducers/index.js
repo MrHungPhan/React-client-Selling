@@ -11,6 +11,7 @@ import cart from './cart'
 import info from './info';
 import searchData from './search'
 import orders from './order'
+import posts from './post'
 
 
 var myReducers = combineReducers({
@@ -24,7 +25,8 @@ var myReducers = combineReducers({
    cart,
    info,
    searchData,
-   orders
+   orders,
+   posts
 })
 
 export default myReducers;

@@ -1,0 +1,92 @@
+.new-most a, .news-body a{
+    color: #333;
+    text-decoration: none;
+}
+
+.new-most{
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+.n-m-title{
+    display: inline-block;
+    padding: .7em 1.2em;
+    background: #ff8d00;
+    margin-bottom: .7em;
+    color: #fff;
+
+}
+
+/* // new post item */
+.n-m-item {
+    cursor: pointer;
+}
+
+.n-m-i-img img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover
+}
+
+.n-m-i-title {
+    font-weight: 500;
+    margin-top:.5em;
+    margin-bottom: .5em;
+}
+
+.n-m-i-title:hover{
+    color: #ff8d00
+}
+
+.n-m-i-sumary{
+    font-size: .9em;
+    margin-bottom: .5em;
+}
+.n-m-i-time{
+    font-size: .8em;
+    color: #bbb
+}
+
+
+
+/* ////////////////////////////////////////// */
+.news-body{
+    margin-bottom: 2em;
+}
+
+/* n-c-item */
+.n-c-item {
+    margin-bottom: 2em;
+    cursor: pointer;
+}
+
+.n-c-item .n-c-title{
+    font-weight: 500;
+    margin-bottom: .4em;
+}
+
+.n-c-item .n-c-title:hover{
+    color: #ff8d00
+}
+
+.n-c-b-img img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    margin-right: .5em;
+
+}
+
+.n-c-body{
+    display:flex;
+}
+
+.n-c-b-sumary{
+    font-size: .8em;
+}
+
+.n-c-b-sumary .n-c-b-time{
+    font-size: .75em;
+    margin-top: .5em;
+    color: #ccc
+}

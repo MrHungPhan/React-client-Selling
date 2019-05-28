@@ -79,14 +79,7 @@ class ProductDetailtPage extends PureComponent {
                                             Đánh giá
                                   </div>
                                     </NavItem>
-                                    <NavItem>
-                                        <div
-                                            className={classnames("item-tab",{ active: this.state.activeTab === '3' })}
-                                            onClick={() => { this.toggle('3'); }}
-                                        >
-                                            Đặt câu hỏi cho sản phẩm 
-                                  </div>
-                                    </NavItem>
+                                   
                                 </Nav>
                                 <TabContent activeTab={this.state.activeTab}>
                                     <TabPane id='tab-description' tabId="1">        
@@ -113,10 +106,7 @@ class ProductDetailtPage extends PureComponent {
 
                                     </div>
                                     </TabPane>
-                                    <TabPane tabId="3">
-                                   
-                                   3
-                       </TabPane>
+                                  
                                 </TabContent>
                                 </Col>
                         </Row>
